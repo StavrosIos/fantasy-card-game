@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fantasy Card Game</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       GAME OVER OVERLAY
+       ============================================================ -->
+  <div id="game-over">
+    <h1 id="game-over-title"></h1>
+    <p id="game-over-sub"></p>
+    <button class="btn btn-restart" onclick="initGame()">Play Again</button>
+  </div>
+
+  <!-- ============================================================
+       MAIN GAME BOARD
+       ============================================================ -->
+  <div id="game-board">
+
+    <!-- AI Player Bar -->
+    <div class="player-bar ai">
+      <div class="player-info">
+        <span class="player-name">&#128126; AI Opponent</span>
+        <span class="stat-badge health" id="ai-health">20 HP</span>
+        <span class="stat-badge mana" id="ai-mana">0 / 10 Mana</span>
+      </div>
+      <div class="deck-info">Deck: <span id="ai-deck-count">0</span></div>
+    </div>
+
+    <!-- Turn Indicator -->
+    <div class="turn-indicator player-turn" id="turn-indicator">Your Turn</div>
+
+    <!-- AI Board -->
+    <div class="board-area">
+      <div class="board-row ai-board" id="ai-board"></div>
+
+      <!-- Message Log -->
+      <div class="message-log" id="message-log"></div>
+
+      <!-- Player Board -->
+      <div class="board-row player-board" id="player-board"></div>
+    </div>
+
+    <!-- Player Bar -->
+    <div class="player-bar me">
+      <div class="player-info">
+        <span class="player-name">&#128104;&#8205;&#127919; You</span>
+        <span class="stat-badge health" id="player-health">20 HP</span>
+        <span class="stat-badge mana" id="player-mana">0 / 10 Mana</span>
+      </div>
+      <div class="deck-info">Deck: <span id="player-deck-count">0</span></div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button class="btn btn-end-turn" id="btn-end-turn" onclick="endPlayerTurn()">End Turn</button>
+    </div>
+
+    <!-- Player Hand -->
+    <div class="hand-area" id="player-hand"></div>
+
+  </div>
+
+  <!-- ============================================================
+       SCRIPTS (loaded in dependency order)
+       ============================================================ -->
+  <script src="js/cards.js"></script>
+  <script src="js/game-state.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/combat.js"></script>
+  <script src="js/turns.js"></script>
+  <script src="js/game.js"></script>
+
+</body>
+</html>

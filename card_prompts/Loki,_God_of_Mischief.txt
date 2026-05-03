@@ -1,0 +1,20 @@
+A single, professionally designed fantasy trading card displayed in a straight-on, flat view, perfectly centered and fully visible with no perspective distortion. The card features an ornate, high-quality fantasy frame with sharp rectangular borders, polished metallic accents, and symmetrical layout, set against a clean neutral background for easy cropping.
+
+At the top of the card, a clearly defined title bar displays the name: "Loki, God of Mischief", with a mana cost of 6 shown in a distinct icon at the top-right corner.
+
+The central artwork shows the cunning Loki standing with a sly grin, his green and gold asymmetrical outfit matching his dual nature. His sharp features glow with magical energy as golden runes swirl around him. He holds a serpent's tail in one hand, and behind him, the world tree Yggdrasil twists through misty darkness. Style is highly detailed digital painting, vibrant color palette with professional trading card game quality.
+
+Below the artwork is a clean type line reading:
+"God — Norse"
+
+Beneath that is a clearly separated text box with sharp, readable typography containing two abilities:
+
+Trickery: Copy an enemy minion's ability
+Shapeshift: Change form to any 3-cost minion
+
+At the bottom of the card is a polished stats bar displaying:
+Attack 5 (left) and Health 4 (right)
+
+The entire layout is clean, balanced, and symmetrical with consistent spacing. All text is crisp, correctly spelled, and fully legible. No blur, no distortion, no warped text.
+
+Style tags: high fantasy, trading card game, ultra-detailed, sharp focus, professional UI design, digital painting, vibrant lighting, clean layout, print-ready

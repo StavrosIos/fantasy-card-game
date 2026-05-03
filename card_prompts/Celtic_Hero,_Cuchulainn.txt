@@ -1,0 +1,20 @@
+A single, professionally designed fantasy trading card displayed in a straight-on, flat view, perfectly centered and fully visible with no perspective distortion. The card features an ornate, high-quality fantasy frame with sharp rectangular borders, polished metallic accents, and symmetrical layout, set against a clean neutral background for easy cropping.
+
+At the top of the card, a clearly defined title bar displays the name: "Celtic Hero, Cuchulainn", with a mana cost of 7 shown in a distinct icon at the top-right corner.
+
+The central artwork shows the legendary Celtic hero Cuchulainn in his war riastrachation, his body contorted with battle fury. His single eye protrudes from his head, his woad paint glowing blue, and his spear Gae Bulg gleams with magical energy. His wolf hound leaps beside him on the misty Celtic battlefield. Style is highly detailed digital painting, vibrant color palette with professional trading card game quality.
+
+Below the artwork is a clean type line reading:
+"Creature — Human"
+
+Beneath that is a clearly separated text box with sharp, readable typography containing two abilities:
+
+Warp Rage: +4 Attack but -2 Health
+Gae Bulg: Deal 5 damage to a minion
+
+At the bottom of the card is a polished stats bar displaying:
+Attack 8 (left) and Health 4 (right)
+
+The entire layout is clean, balanced, and symmetrical with consistent spacing. All text is crisp, correctly spelled, and fully legible. No blur, no distortion, no warped text.
+
+Style tags: high fantasy, trading card game, ultra-detailed, sharp focus, professional UI design, digital painting, vibrant lighting, clean layout, print-ready

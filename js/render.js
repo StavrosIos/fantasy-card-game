@@ -46,6 +46,28 @@ function render() {
   renderHand(gs.player.hand, 'player-hand', true);
 }
 
+/**
+ * Creates an info overlay element for a card
+ * @param {Object} card 
+ * @returns {string} HTML string
+ */
+function getCardOverlayHTML(card) {
+  return `
+    <div class="card-info-overlay">
+      <div class="info-title">${card.name}</div>
+      <div class="info-rarity ${card.rarity}">${card.rarity}</div>
+      <div class="info-type">${card.typeLine || ''}</div>
+      <div class="info-abilities">
+        ${card.abilities ? card.abilities.map(a => `<div class="ability-item">${a}</div>`).join('') : ''}
+      </div>
+      <div class="info-stats">
+        <span>Attack: ${card.attack}</span>
+        <span>Health: ${card.health}</span>
+      </div>
+    </div>
+  `;
+}
+
 /* --- Hand Rendering --- */
 
 /** Render a hand of cards.
@@ -63,7 +85,7 @@ function renderHand(cards, containerId, isPlayer) {
     if (isPlayer) {
       // Player hand card — interactive, can be played
       const canPlay = gs.turn === 'player' && gs.player.mana >= card.manaCost;
-      el.className = 'card ' + getThemeClass(card.archetype) + (!canPlay ? ' unplayable' : '');
+      el.className = 'card ' + getThemeClass(card.mythology) + (!canPlay ? ' unplayable' : '');
       el.dataset.idx = i;
 
       // Highlight selected card for playing
@@ -73,14 +95,13 @@ function renderHand(cards, containerId, isPlayer) {
 
       el.innerHTML = `
         <div class="card-mana">${card.manaCost}</div>
-        ${card.image ? `<img src="${card.image}" alt="${card.name}" class="card-image">` : `<div class="card-art">${card.art}</div>`}
+        ${card.image ? `<img src="${card.image}" alt="${card.name}" class="card-image">` : `<div class="card-art">${card.art || ''}</div>`}
         <div class="card-name">${card.name}</div>
-        <div class="card-archetype">${card.archetype}</div>
-        <div class="card-ability" title="${card.abilityDesc}">${card.ability}</div>
         <div class="card-stats">
           <span class="atk">⚔${card.attack}</span>
           <span class="hp">♥${card.health}</span>
         </div>
+        ${getCardOverlayHTML(card)}
       `;
 
       el.addEventListener('click', () => onHandCardClick(i));
@@ -110,7 +131,7 @@ function renderBoard(cards, containerId, isAI) {
     const card = cards[i];
     const el = document.createElement('div');
 
-    let classes = 'board-card card ' + getThemeClass(card.archetype);
+    let classes = 'board-card card ' + getThemeClass(card.mythology);
     if (card.frozen) classes += ' frozen';
 
     // Selected attacker highlight (player's own board card)
@@ -134,14 +155,13 @@ function renderBoard(cards, containerId, isAI) {
 
     el.innerHTML = `
       <div class="card-mana">${card.manaCost}</div>
-      ${card.image ? `<img src="${card.image}" alt="${card.name}" class="card-image">` : `<div class="card-art">${card.art}${statusIcons.length ? ' ' + statusIcons.join('') : ''}</div>`}
+      ${card.image ? `<img src="${card.image}" alt="${card.name}" class="card-image">` : `<div class="card-art">${card.art || ''}${statusIcons.length ? ' ' + statusIcons.join('') : ''}</div>`}
       <div class="card-name">${card.name}</div>
-      <div class="card-archetype">${card.archetype}</div>
-      <div class="card-ability" title="${card.abilityDesc}">${card.ability}</div>
       <div class="card-stats">
         <span class="atk">⚔${card.attack}</span>
         <span class="hp">♥${card.health}</span>
       </div>
+      ${getCardOverlayHTML(card)}
     `;
 
     el.addEventListener('click', () => onBoardCardClick(card, isAI));

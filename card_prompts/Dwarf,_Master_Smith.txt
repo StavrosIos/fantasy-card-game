@@ -1,0 +1,20 @@
+A single, professionally designed fantasy trading card displayed in a straight-on, flat view, perfectly centered and fully visible with no perspective distortion. The card features an ornate, high-quality fantasy frame with sharp rectangular borders, polished metallic accents, and symmetrical layout, set against a clean neutral background for easy cropping.
+
+At the top of the card, a clearly defined title bar displays the name: "Dwarf, Master Smith", with a mana cost of 3 shown in a distinct icon at the top-right corner.
+
+The central artwork shows the stout dwarf blacksmith standing in his fiery underground forge beneath Mount Eitri, his muscular arms covered in soot and scars. He wields a hammer that glows red-hot, striking a divine weapon on an anvil. Golden sparks fly everywhere as molten lava flows around his feet. Style is highly detailed digital painting, vibrant color palette with professional trading card game quality.
+
+Below the artwork is a clean type line reading:
+"Creature — Dwarf"
+
+Beneath that is a clearly separated text box with sharp, readable typography containing two abilities:
+
+Forge: Give a minion +2 Attack
+Mjolnir Craft: Summon a 1/1 Construct
+
+At the bottom of the card is a polished stats bar displaying:
+Attack 2 (left) and Health 3 (right)
+
+The entire layout is clean, balanced, and symmetrical with consistent spacing. All text is crisp, correctly spelled, and fully legible. No blur, no distortion, no warped text.
+
+Style tags: high fantasy, trading card game, ultra-detailed, sharp focus, professional UI design, digital painting, vibrant lighting, clean layout, print-ready

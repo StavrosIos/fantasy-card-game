@@ -42,10 +42,11 @@ function createCardInstance(template) {
     attack: template.attack,
     health: template.health,
     maxHealth: template.health,
-    archetype: template.archetype,
+    typeLine: template.typeLine,
+    mythology: template.mythology,
+    rarity: template.rarity,
     ability: template.ability,
     abilityDesc: template.abilityDesc,
-    art: template.art,
     image: template.image,
     canAttack: false,   // summoning sickness (unless Rush/Charge)
     frozen: false,      // can't attack while frozen
@@ -55,17 +56,23 @@ function createCardInstance(template) {
   };
 }
 
-/** Map archetype string to CSS theme class */
-function getThemeClass(archetype) {
+/** Map mythology string to CSS theme class */
+function getThemeClass(mythology) {
   const map = {
-    'Fire Mage': 'theme-fire',
-    'Ice Sorcerer': 'theme-ice',
-    'Undead': 'theme-undead',
-    'Forest Beast': 'theme-beast',
-    'Knight': 'theme-knight',
-    'Vampire': 'theme-vampire',
+    'Greek': 'theme-greek',
+    'Egyptian': 'theme-egyptian',
+    'Chinese': 'theme-chinese',
+    'Norse': 'theme-norse',
+    'Celtic': 'theme-celtic',
+    'Japanese': 'theme-japanese',
+    'Mesopotamian': 'theme-mesopotamian',
+    'Hindu': 'theme-hindu',
+    'Aztec': 'theme-aztec',
+    'African': 'theme-african',
+    'NativeAmerican': 'theme-native',
+    'Inuit': 'theme-inuit'
   };
-  return map[archetype] || 'theme-fire';
+  return map[mythology] || 'theme-default';
 }
 
 /** Find a card by ID across all zones (board, hand, deck) */
@@ -79,8 +86,8 @@ function findTemplateFor(card) {
   for (const tmpl of CARD_TEMPLATES) {
     if (tmpl.name === card.name && tmpl.manaCost === card.manaCost) return tmpl;
   }
-  // Fallback: generic skeleton
-  return { name:'Skeleton', manaCost:0, attack:1, health:1, archetype:'Undead', ability:'', abilityDesc:'', art:'💀' };
+  // Fallback
+  return { name:'Skeleton', manaCost:0, attack:1, health:1, mythology:'Unknown', ability:'', abilityDesc:'', art:'💀' };
 }
 
 /* --- Deck Building --- */

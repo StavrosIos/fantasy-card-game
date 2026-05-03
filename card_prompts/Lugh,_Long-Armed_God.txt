@@ -1,0 +1,20 @@
+A single, professionally designed fantasy trading card displayed in a straight-on, flat view, perfectly centered and fully visible with no perspective distortion. The card features an ornate, high-quality fantasy frame with sharp rectangular borders, polished metallic accents, and symmetrical layout, set against a clean neutral background for easy cropping.
+
+At the top of the card, a clearly defined title bar displays the name: "Lugh, Long-Armed God", with a mana cost of 8 shown in a distinct icon at the top-right corner.
+
+The central artwork shows the mighty Celtic god Lugh standing in golden armor with his impossibly long arm extended, wielding the great spear Nuada that glows with solar energy. He wears a Celtic torc and flowing green cloak, his face showing both wisdom and battle fury. The Celtic sun wheel burns behind him in a golden sky. Style is highly detailed digital painting, vibrant color palette with professional trading card game quality.
+
+Below the artwork is a clean type line reading:
+"God — Celtic"
+
+Beneath that is a clearly separated text box with sharp, readable typography containing two abilities:
+
+Master of All: Gain all warrior abilities
+Spear of Light: Deal 5 damage to any target
+
+At the bottom of the card is a polished stats bar displaying:
+Attack 7 (left) and Health 7 (right)
+
+The entire layout is clean, balanced, and symmetrical with consistent spacing. All text is crisp, correctly spelled, and fully legible. No blur, no distortion, no warped text.
+
+Style tags: high fantasy, trading card game, ultra-detailed, sharp focus, professional UI design, digital painting, vibrant lighting, clean layout, print-ready

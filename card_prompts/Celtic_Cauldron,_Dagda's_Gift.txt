@@ -1,0 +1,20 @@
+A single, professionally designed fantasy trading card displayed in a straight-on, flat view, perfectly centered and fully visible with no perspective distortion. The card features an ornate, high-quality fantasy frame with sharp rectangular borders, polished metallic accents, and symmetrical layout, set against a clean neutral background for easy cropping.
+
+At the top of the card, a clearly defined title bar displays the name: "Celtic Cauldron, Dagda's Gift", with a mana cost of 3 shown in a distinct icon at the top-right corner.
+
+The central artwork shows the enormous Celtic cauldron of Dagda sitting on stone legs in a misty Irish grove, its bronze surface covered in glowing Celtic knots and spirals. Golden steam rises from within as magical energy pulses from its depths. Ancient Celtic carvings glow on the standing stones around it. Style is highly detailed digital painting, vibrant color palette with professional trading card game quality.
+
+Below the artwork is a clean type line reading:
+"Artifact — Relic"
+
+Beneath that is a clearly separated text box with sharp, readable typography containing two abilities:
+
+Endless Feast: Restore 5 health to your hero
+Magic Brew: Summon a random 2-cost minion
+
+At the bottom of the card is a polished stats bar displaying:
+Attack 0 (left) and Health 0 (right)
+
+The entire layout is clean, balanced, and symmetrical with consistent spacing. All text is crisp, correctly spelled, and fully legible. No blur, no distortion, no warped text.
+
+Style tags: high fantasy, trading card game, ultra-detailed, sharp focus, professional UI design, digital painting, vibrant lighting, clean layout, print-ready

@@ -56,7 +56,13 @@ function showGameOver(playerWon) {
 
 /** Initialize a new game: reset state, build decks, draw hands.
  *  Called automatically on page load and when "Play Again" is clicked. */
-function initGame() {
+async function initGame() {
+  // First, load templates if they haven't been loaded
+  if (CARD_TEMPLATES.length === 0) {
+    log('Loading mythical cards...');
+    await loadCardTemplates();
+  }
+
   // Reset state
   gs = {
     player: { health:20, mana:0, maxMana:1, deck:[], hand:[], board:[] },

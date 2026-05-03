@@ -282,31 +282,19 @@ body {
 .card-stats .hp { color: #ff4d4d; font-weight: bold; }
 .card-stats .atk { color: #ffcc00; font-weight: bold; }
 
-/* Theme Borders */
-.card.theme-fire {
-  border-color: #e67e22;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), inset 0 0 20px #e67e2222;
-}
-.card.theme-ice {
-  border-color: #3498db;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), inset 0 0 20px #3498db22;
-}
-.card.theme-undead {
-  border-color: #9b59b6;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), inset 0 0 20px #9b59b622;
-}
-.card.theme-beast {
-  border-color: #27ae60;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), inset 0 0 20px #27ae6022;
-}
-.card.theme-knight {
-  border-color: #f1c40f;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), inset 0 0 20px #f1c40f22;
-}
-.card.theme-vampire {
-  border-color: #c0392b;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), inset 0 0 20px #c0392b22;
-}
+/* New Mythology Theme Borders */
+.card.theme-greek { border-color: #e0e0e0; box-shadow: 0 5px 15px rgba(255,255,255,0.1), inset 0 0 20px rgba(255,255,255,0.05); }
+.card.theme-egyptian { border-color: #f1c40f; box-shadow: 0 5px 15px rgba(241,196,15,0.2), inset 0 0 20px rgba(241,196,15,0.1); }
+.card.theme-chinese { border-color: #e74c3c; box-shadow: 0 5px 15px rgba(231,76,60,0.2), inset 0 0 20px rgba(231,76,60,0.1); }
+.card.theme-norse { border-color: #3498db; box-shadow: 0 5px 15px rgba(52,152,219,0.2), inset 0 0 20px rgba(52,152,219,0.1); }
+.card.theme-celtic { border-color: #2ecc71; box-shadow: 0 5px 15px rgba(46,204,113,0.2), inset 0 0 20px rgba(46,204,113,0.1); }
+.card.theme-japanese { border-color: #ff9ff3; box-shadow: 0 5px 15px rgba(255,159,243,0.2), inset 0 0 20px rgba(255,159,243,0.1); }
+.card.theme-mesopotamian { border-color: #9b59b6; box-shadow: 0 5px 15px rgba(155,89,182,0.2), inset 0 0 20px rgba(155,89,182,0.1); }
+.card.theme-hindu { border-color: #f39c12; box-shadow: 0 5px 15px rgba(243,156,18,0.2), inset 0 0 20px rgba(243,156,18,0.1); }
+.card.theme-aztec { border-color: #1abc9c; box-shadow: 0 5px 15px rgba(26,188,156,0.2), inset 0 0 20px rgba(26,188,156,0.1); }
+.card.theme-african { border-color: #e67e22; box-shadow: 0 5px 15px rgba(230,126,34,0.2), inset 0 0 20px rgba(230,126,34,0.1); }
+.card.theme-native { border-color: #34495e; box-shadow: 0 5px 15px rgba(52,73,94,0.2), inset 0 0 20px rgba(52,73,94,0.1); }
+.card.theme-inuit { border-color: #ecf0f1; box-shadow: 0 5px 15px rgba(236,240,241,0.2), inset 0 0 20px rgba(236,240,241,0.1); }
 
 .board-card {
   width: 125px;
@@ -380,6 +368,82 @@ body {
 
 .card.frozen {
   filter: hue-rotate(180deg) brightness(1.2);
+}
+
+/* Card Info Overlay */
+.card-info-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  padding: 10px 8px; /* Adjusted padding */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 200;
+  pointer-events: none;
+  font-family: 'MedievalSharp', cursive;
+  color: #e8ddc0;
+}
+
+.card:hover .card-info-overlay {
+  opacity: 1;
+}
+
+.info-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95em;
+  color: #f1c40f;
+  text-align: center;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #3d2b1f;
+  padding-bottom: 5px;
+}
+
+.info-rarity {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.info-rarity.Legendary { color: #f1c40f; text-shadow: 0 0 5px #f1c40f; }
+.info-rarity.Rare { color: #3498db; }
+.info-rarity.Uncommon { color: #2ecc71; }
+.info-rarity.Common { color: #bdc3c7; }
+
+.info-type {
+  font-size: 0.65em;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 12px;
+  color: #8a7d6b;
+}
+
+.info-abilities {
+  flex: 1;
+  font-size: 0.75em;
+  line-height: 1.4;
+  overflow-y: auto;
+}
+
+.ability-item {
+  margin-bottom: 5px; /* Reduced margin */
+  padding-left: 5px;
+  border-left: 2px solid #3d2b1f;
+}
+
+.info-stats {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85em; /* Slightly smaller */
+  font-family: 'Cinzel', serif;
+  border-top: 1px solid #3d2b1f;
+  padding-top: 5px; /* Reduced padding */
 }
 
 /* Buttons */

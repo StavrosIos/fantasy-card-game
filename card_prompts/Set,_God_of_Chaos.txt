@@ -1,0 +1,20 @@
+A single, professionally designed fantasy trading card displayed in a straight-on, flat view, perfectly centered and fully visible with no perspective distortion. The card features an ornate, high-quality fantasy frame with sharp rectangular borders, polished metallic accents, and symmetrical layout, set against a clean neutral background for easy cropping.
+
+At the top of the card, a clearly defined title bar displays the name: "Set, God of Chaos", with a mana cost of 7 shown in a distinct icon at the top-right corner.
+
+The central artwork shows the fierce and menacing chaos god Set in his mysterious Seth animal form with a long snout and square ears, standing amid a raging sandstorm. His red cloak billows as lightning cracks around him in the desert sky. The serpent Apophis coils beneath his feet, and broken pillars of ancient Egypt rise from the sand. Style is highly detailed digital painting, vibrant color palette with professional trading card game quality.
+
+Below the artwork is a clean type line reading:
+"God — Egyptian"
+
+Beneath that is a clearly separated text box with sharp, readable typography containing two abilities:
+
+Chaos Wave: Deal 2 damage to everything
+Sandstorm: Destroy all 1-cost minions
+
+At the bottom of the card is a polished stats bar displaying:
+Attack 7 (left) and Health 6 (right)
+
+The entire layout is clean, balanced, and symmetrical with consistent spacing. All text is crisp, correctly spelled, and fully legible. No blur, no distortion, no warped text.
+
+Style tags: high fantasy, trading card game, ultra-detailed, sharp focus, professional UI design, digital painting, vibrant lighting, clean layout, print-ready

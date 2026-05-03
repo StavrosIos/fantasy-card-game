@@ -1,0 +1,20 @@
+A single, professionally designed fantasy trading card displayed in a straight-on, flat view, perfectly centered and fully visible with no perspective distortion. The card features an ornate, high-quality fantasy frame with sharp rectangular borders, polished metallic accents, and symmetrical layout, set against a clean neutral background for easy cropping.
+
+At the top of the card, a clearly defined title bar displays the name: "Isis, Goddess of Magic", with a mana cost of 6 shown in a distinct icon at the top-right corner.
+
+The central artwork shows the powerful goddess Isis floating in a starlit sky, her golden headdress with the hieroglyph of the throne glowing brightly. She wears a sleek form-fitting gown of lapis lazuli blue and gold, her arms raised as magical energy swirls around her in glowing golden spirals. The phoenix of rebirth rises behind her. Style is highly detailed digital painting, vibrant color palette with professional trading card game quality.
+
+Below the artwork is a clean type line reading:
+"God — Egyptian"
+
+Beneath that is a clearly separated text box with sharp, readable typography containing two abilities:
+
+Magic Mastery: Copy an enemy minion's ability
+Healing Touch: Restore 5 health to a friendly minion
+
+At the bottom of the card is a polished stats bar displaying:
+Attack 4 (left) and Health 6 (right)
+
+The entire layout is clean, balanced, and symmetrical with consistent spacing. All text is crisp, correctly spelled, and fully legible. No blur, no distortion, no warped text.
+
+Style tags: high fantasy, trading card game, ultra-detailed, sharp focus, professional UI design, digital painting, vibrant lighting, clean layout, print-ready

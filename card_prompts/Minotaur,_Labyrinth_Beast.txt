@@ -1,0 +1,20 @@
+A single, professionally designed fantasy trading card displayed in a straight-on, flat view, perfectly centered and fully visible with no perspective distortion. The card features an ornate, high-quality fantasy frame with sharp rectangular borders, polished metallic accents, and symmetrical layout, set against a clean neutral background for easy cropping.
+
+At the top of the card, a clearly defined title bar displays the name: "Minotaur, Labyrinth Beast", with a mana cost of 5 shown in a distinct icon at the top-right corner.
+
+The central artwork shows the massive Minotaur standing in the dark stone corridors of the Labyrinth, its bull-headed form towering over everything. It wields a double-bladed bronze axe dripping with blood. Its muscular body is covered in dark brown fur, and its glowing red eyes burn with rage. Stone walls of the labyrinth surround it. Style is highly detailed digital painting, vibrant color palette with professional trading card game quality.
+
+Below the artwork is a clean type line reading:
+"Creature — Monster"
+
+Beneath that is a clearly separated text box with sharp, readable typography containing two abilities:
+
+Charge: Attack immediately when played
+Labyrinth Trap: Deal 2 damage to attackers
+
+At the bottom of the card is a polished stats bar displaying:
+Attack 6 (left) and Health 5 (right)
+
+The entire layout is clean, balanced, and symmetrical with consistent spacing. All text is crisp, correctly spelled, and fully legible. No blur, no distortion, no warped text.
+
+Style tags: high fantasy, trading card game, ultra-detailed, sharp focus, professional UI design, digital painting, vibrant lighting, clean layout, print-ready

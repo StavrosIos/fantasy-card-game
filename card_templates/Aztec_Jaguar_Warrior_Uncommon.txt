@@ -1,0 +1,19 @@
+A single, professionally designed empty fantasy trading card FRAME displayed in a straight-on, flat view, perfectly centered and fully visible with no perspective distortion. The card is completely empty — no character artwork, no name, no text content — just the ornamental frame structure with clearly defined empty slots.
+
+The card has a clean neutral background for easy cropping and compositing.
+
+The card frame is made of dark material with jaguar pelt texture and obsidian blade fittings. The outer border features repeating Aztec jaguar warrior helmet motifs in gold. The corners have obsidian mirror ornaments (used for divination). The frame has a fierce Aztec military aesthetic with dark tones and sharp obsidian edges. The color palette is dark brown/black jaguar pelt, gold fittings, and obsidian grey accents.
+
+At the top of the card is a clearly defined horizontal bar area for the card name, with a circular slot at the top-right corner for the mana cost icon. The name bar is empty and blank.
+
+Below the name bar is a large rectangular artwork slot — completely empty white/neutral space where character artwork will be placed later. The artwork area has a clean border matching the card frame design.
+
+Below the artwork slot is a narrow horizontal type line bar — empty and blank, where creature type text will be added later.
+
+Beneath that is a clearly separated rectangular text box area — completely empty white/neutral space where card ability text will be added later. The text box has a subtle inner border and clean sharp edges.
+
+At the bottom of the card is a polished horizontal stats bar with two circular slots: one on the left for Attack value and one on the right for Health value. Both circles are empty and blank.
+
+The entire layout is clean, balanced, and symmetrical with consistent spacing. All frame elements are crisp and well-defined. No blur, no distortion, no warped text, no artwork inside the slots.
+
+Style tags: high fantasy, trading card game, ultra-detailed, sharp focus, professional UI design, clean layout, print-ready, empty frame template

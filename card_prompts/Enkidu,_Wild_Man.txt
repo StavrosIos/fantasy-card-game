@@ -1,0 +1,20 @@
+A single, professionally designed fantasy trading card displayed in a straight-on, flat view, perfectly centered and fully visible with no perspective distortion. The card features an ornate, high-quality fantasy frame with sharp rectangular borders, polished metallic accents, and symmetrical layout, set against a clean neutral background for easy cropping.
+
+At the top of the card, a clearly defined title bar displays the name: "Enkidu, Wild Man", with a mana cost of 5 shown in a distinct icon at the top-right corner.
+
+The central artwork shows the wild man Enkidu standing in the Mesopotamian plains, his body covered in thick brown fur with goat hooves for feet. His fierce face shows wild determination as he wrestles a lion beside him. Golden grass and ancient trees stretch across the vast open landscape under a bright sky. Style is highly detailed digital painting, vibrant color palette with professional trading card game quality.
+
+Below the artwork is a clean type line reading:
+"Creature — Beast"
+
+Beneath that is a clearly separated text box with sharp, readable typography containing two abilities:
+
+Wild Strength: Deal 3 damage to a minion
+Nature's Bond: +1 Attack for each beast
+
+At the bottom of the card is a polished stats bar displaying:
+Attack 5 (left) and Health 4 (right)
+
+The entire layout is clean, balanced, and symmetrical with consistent spacing. All text is crisp, correctly spelled, and fully legible. No blur, no distortion, no warped text.
+
+Style tags: high fantasy, trading card game, ultra-detailed, sharp focus, professional UI design, digital painting, vibrant lighting, clean layout, print-ready

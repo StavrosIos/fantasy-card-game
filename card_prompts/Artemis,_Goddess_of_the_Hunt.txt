@@ -1,0 +1,20 @@
+A single, professionally designed fantasy trading card displayed in a straight-on, flat view, perfectly centered and fully visible with no perspective distortion. The card features an ornate, high-quality fantasy frame with sharp rectangular borders, polished metallic accents, and symmetrical layout, set against a clean neutral background for easy cropping.
+
+At the top of the card, a clearly defined title bar displays the name: "Artemis, Goddess of the Hunt", with a mana cost of 5 shown in a distinct icon at the top-right corner.
+
+The central artwork shows the fierce huntress goddess Artemis in a short brown leather hunting outfit, drawing her silver bow with perfect aim. A glowing crescent moon hovers behind her. Her loyal hunting deer stands beside her with antlers that glow softly. Forest shadows and moonlight create a mystical atmosphere around her. Style is highly detailed digital painting, vibrant color palette with professional trading card game quality.
+
+Below the artwork is a clean type line reading:
+"God — Greek"
+
+Beneath that is a clearly separated text box with sharp, readable typography containing two abilities:
+
+Hunter's Mark: Deal 3 damage to a random enemy
+Pack Tactics: Your other minions get +1 Attack
+
+At the bottom of the card is a polished stats bar displaying:
+Attack 5 (left) and Health 4 (right)
+
+The entire layout is clean, balanced, and symmetrical with consistent spacing. All text is crisp, correctly spelled, and fully legible. No blur, no distortion, no warped text.
+
+Style tags: high fantasy, trading card game, ultra-detailed, sharp focus, professional UI design, digital painting, vibrant lighting, clean layout, print-ready

@@ -1,0 +1,20 @@
+A single, professionally designed fantasy trading card displayed in a straight-on, flat view, perfectly centered and fully visible with no perspective distortion. The card features an ornate, high-quality fantasy frame with sharp rectangular borders, polished metallic accents, and symmetrical layout, set against a clean neutral background for easy cropping.
+
+At the top of the card, a clearly defined title bar displays the name: "Jade Emperor, Ruler of Heaven", with a mana cost of 10 shown in a distinct icon at the top-right corner.
+
+The central artwork shows the majestic Jade Emperor seated upon a throne of emerald and gold in the heavenly palace above the clouds. He wears elaborate imperial robes embroidered with dragons and phoenixes, his long black beard flowing gracefully. Golden halos of divine light surround him as celestial attendants bow before him. Style is highly detailed digital painting, vibrant color palette with professional trading card game quality.
+
+Below the artwork is a clean type line reading:
+"God — Chinese"
+
+Beneath that is a clearly separated text box with sharp, readable typography containing two abilities:
+
+Heaven's Decree: Control all minion attacks
+Immortality: Cannot be destroyed by damage
+
+At the bottom of the card is a polished stats bar displaying:
+Attack 8 (left) and Health 10 (right)
+
+The entire layout is clean, balanced, and symmetrical with consistent spacing. All text is crisp, correctly spelled, and fully legible. No blur, no distortion, no warped text.
+
+Style tags: high fantasy, trading card game, ultra-detailed, sharp focus, professional UI design, digital painting, vibrant lighting, clean layout, print-ready

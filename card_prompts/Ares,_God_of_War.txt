@@ -1,0 +1,20 @@
+A single, professionally designed fantasy trading card displayed in a straight-on, flat view, perfectly centered and fully visible with no perspective distortion. The card features an ornate, high-quality fantasy frame with sharp rectangular borders, polished metallic accents, and symmetrical layout, set against a clean neutral background for easy cropping.
+
+At the top of the card, a clearly defined title bar displays the name: "Ares, God of War", with a mana cost of 6 shown in a distinct icon at the top-right corner.
+
+The central artwork shows the fierce god Ares charging into battle in crimson-red armor covered in battle scars. He wields a massive blood-stained sword overhead, roaring with fury. Flames of war burn around him as fallen warriors and broken shields litter the battlefield behind him. His red cape billows dramatically in the wind. Style is highly detailed digital painting, vibrant color palette with professional trading card game quality.
+
+Below the artwork is a clean type line reading:
+"God — Greek"
+
+Beneath that is a clearly separated text box with sharp, readable typography containing two abilities:
+
+War Cry: Give all friendly minions +2 Attack
+Bloodlust: Deal 3 damage to your hero for +4 Attack
+
+At the bottom of the card is a polished stats bar displaying:
+Attack 8 (left) and Health 5 (right)
+
+The entire layout is clean, balanced, and symmetrical with consistent spacing. All text is crisp, correctly spelled, and fully legible. No blur, no distortion, no warped text.
+
+Style tags: high fantasy, trading card game, ultra-detailed, sharp focus, professional UI design, digital painting, vibrant lighting, clean layout, print-ready

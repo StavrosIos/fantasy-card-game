@@ -1,0 +1,20 @@
+A single, professionally designed fantasy trading card displayed in a straight-on, flat view, perfectly centered and fully visible with no perspective distortion. The card features an ornate, high-quality fantasy frame with sharp rectangular borders, polished metallic accents, and symmetrical layout, set against a clean neutral background for easy cropping.
+
+At the top of the card, a clearly defined title bar displays the name: "Oni, Japanese Ogre", with a mana cost of 5 shown in a distinct icon at the top-right corner.
+
+The central artwork shows the terrifying red-skinned Oni ogre standing in a dark Japanese forest, its massive muscular body covered in scales and tiger-skin loincloth. Two large horns protrude from its head, and it wields an iron kanabo club dripping with blood. Its fierce face shows sharp fangs as ghostly flames flicker around it. Style is highly detailed digital painting, vibrant color palette with professional trading card game quality.
+
+Below the artwork is a clean type line reading:
+"Creature — Giant"
+
+Beneath that is a clearly separated text box with sharp, readable typography containing two abilities:
+
+Club Smash: Deal 4 damage to a minion
+Oni Rage: +3 Attack at night
+
+At the bottom of the card is a polished stats bar displaying:
+Attack 6 (left) and Health 5 (right)
+
+The entire layout is clean, balanced, and symmetrical with consistent spacing. All text is crisp, correctly spelled, and fully legible. No blur, no distortion, no warped text.
+
+Style tags: high fantasy, trading card game, ultra-detailed, sharp focus, professional UI design, digital painting, vibrant lighting, clean layout, print-ready

@@ -1,0 +1,20 @@
+A single, professionally designed fantasy trading card displayed in a straight-on, flat view, perfectly centered and fully visible with no perspective distortion. The card features an ornate, high-quality fantasy frame with sharp rectangular borders, polished metallic accents, and symmetrical layout, set against a clean neutral background for easy cropping.
+
+At the top of the card, a clearly defined title bar displays the name: "Ra, God of the Sun", with a mana cost of 10 shown in a distinct icon at the top-right corner.
+
+The central artwork shows the great sun god Ra floating above the desert in his golden falcon-headed form, wearing the solar disk crown with a sacred cobra. His massive wings of gold and crimson spread across the sky. The sun disk behind him radiates blinding golden light that illuminates the entire desert landscape below. Style is highly detailed digital painting, vibrant color palette with professional trading card game quality.
+
+Below the artwork is a clean type line reading:
+"God — Egyptian"
+
+Beneath that is a clearly separated text box with sharp, readable typography containing two abilities:
+
+Solar Flare: Deal 6 damage to all enemy minions
+Daywalker: Gains +2 Attack during your turn
+
+At the bottom of the card is a polished stats bar displaying:
+Attack 8 (left) and Health 8 (right)
+
+The entire layout is clean, balanced, and symmetrical with consistent spacing. All text is crisp, correctly spelled, and fully legible. No blur, no distortion, no warped text.
+
+Style tags: high fantasy, trading card game, ultra-detailed, sharp focus, professional UI design, digital painting, vibrant lighting, clean layout, print-ready

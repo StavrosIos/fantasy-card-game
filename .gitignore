@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# Local AI/Image Assets
+# Depending on preference, you might want to ignore the generated images 
+# if you want to keep the repo small, but usually for a card game 
+# you'd want to commit them once generated.
+# fantasy-card-game/cards/*.png
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+fantasy-card-game/message-log.txt

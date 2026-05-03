@@ -7,8 +7,8 @@
 
 // Global game state — all mutable game data lives here
 let gs = {
-  player: { health:20, mana:0, maxMana:1, deck:[], hand:[], board:[] },
-  ai:     { health:20, mana:0, maxMana:1, deck:[], hand:[], board:[] },
+  player: { health:20, mana:0, maxMana:1, deck:[], hand:[], board:[], heroImage: '' },
+  ai:     { health:20, mana:0, maxMana:1, deck:[], hand:[], board:[], heroImage: '' },
   turn: 'player',           // whose turn it is
   phase: 'main',            // main | aiThinking
   attackerId: null,         // id of player's board card selected to attack with
@@ -45,8 +45,7 @@ function createCardInstance(template) {
     typeLine: template.typeLine,
     mythology: template.mythology,
     rarity: template.rarity,
-    ability: template.ability,
-    abilityDesc: template.abilityDesc,
+    abilities: template.abilities || [],
     image: template.image,
     canAttack: false,   // summoning sickness (unless Rush/Charge)
     frozen: false,      // can't attack while frozen
@@ -55,6 +54,18 @@ function createCardInstance(template) {
     hasAttacked: false, // already used attack this turn
   };
 }
+
+/** List of available hero images */
+const HERO_IMAGES = [
+  'Hero-Odin-NorseMythology.png',
+  'Hero-Ra-EgyptianMythology.png',
+  'Hero-TheJadeEmperor-ChineseMythology.png',
+  'Hero-Zeus-GreekMythology.png',
+  'Hero-Amaterasu-JapaneseMythology.png',
+  'Hero-TheDagda-CelticMythology.png',
+  'Hero-Ishtar-MesopotamianMythology.png',
+  'Hero-Shiva-HinduMythology.png'
+];
 
 /** Map mythology string to CSS theme class */
 function getThemeClass(mythology) {

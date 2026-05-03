@@ -63,10 +63,14 @@ async function initGame() {
     await loadCardTemplates();
   }
 
+  // Randomly pick hero images for player and AI
+  const playerHeroImage = HERO_IMAGES[Math.floor(Math.random() * HERO_IMAGES.length)];
+  const aiHeroImage = HERO_IMAGES[Math.floor(Math.random() * HERO_IMAGES.length)];
+
   // Reset state
   gs = {
-    player: { health:20, mana:0, maxMana:1, deck:[], hand:[], board:[] },
-    ai:     { health:20, mana:0, maxMana:1, deck:[], hand:[], board:[] },
+    player: { health:20, mana:0, maxMana:1, deck:[], hand:[], board:[], heroImage: playerHeroImage },
+    ai:     { health:20, mana:0, maxMana:1, deck:[], hand:[], board:[], heroImage: aiHeroImage },
     turn: 'player',
     phase: 'main',
     selectedHandIdx: null,

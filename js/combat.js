@@ -352,8 +352,63 @@ function applyBattlecry(card, owner) {
       // No battlecry effect
       break;
 
-    default:
-      log(card.name + ' plays.');
+    default: {
+      if (card.abilities && card.abilities.length > 0) {
+        card.abilities.forEach(abilityStr => {
+          const lower = abilityStr.toLowerCase();
+
+          // Divine Strategy: Draw 2 cards
+          if (lower.includes("draw") && lower.includes("cards")) {
+            const match = lower.match(/draw (\d+) cards?/);
+            const count = match ? parseInt(match[1]) : 1;
+            const myState = owner === 'player' ? gs.player : gs.ai;
+            for (let i = 0; i < count; i++) {
+              if (myState.deck.length > 0) myState.hand.push(myState.deck.pop());
+            }
+            log(card.name + " triggers: Draw " + count + " cards");
+          }
+
+          // Shield of Aegis: Prevent 5 damage to your hero
+          if (lower.includes("prevent") && lower.includes("damage")) {
+            const match = lower.match(/prevent (\d+) damage/);
+            const amount = match ? parseInt(match[1]) : 2;
+            const myState = owner === 'player' ? gs.player : gs.ai;
+            myState.health = Math.min(20, myState.health + amount);
+            log(card.name + " triggers: Protects hero (Restored " + amount + " HP)");
+          }
+
+          // Thunderbolt: Deal 5 damage to all enemy minions
+          if (lower.includes("deal") && lower.includes("damage to all enemy minions")) {
+            const match = lower.match(/deal (\d+) damage/);
+            const damage = match ? parseInt(match[1]) : 2;
+            enemy.board.forEach(c => c.health -= damage);
+            log(card.name + " triggers: Deal " + damage + " damage to ALL enemies");
+          }
+          
+          // Generic "Deal X damage to a minion"
+          else if (lower.includes("deal") && lower.includes("damage to a minion")) {
+             const match = lower.match(/deal (\d+) damage/);
+             const damage = match ? parseInt(match[1]) : 2;
+             if (enemy.board.length > 0) {
+                const target = enemy.board[Math.floor(Math.random() * enemy.board.length)];
+                target.health -= damage;
+                log(card.name + " fires at " + target.name + " for " + damage + "!");
+             }
+          }
+
+          // Restore X health to your hero
+          if (lower.includes("restore") && lower.includes("health to your hero")) {
+            const match = lower.match(/restore (\d+) health/);
+            const amount = match ? parseInt(match[1]) : 3;
+            const myState = owner === 'player' ? gs.player : gs.ai;
+            myState.health = Math.min(20, myState.health + amount);
+            log(card.name + " triggers: Restore " + amount + " HP");
+          }
+        });
+      } else {
+        log(card.name + ' plays.');
+      }
+    }
   }
 }
 

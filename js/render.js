@@ -105,6 +105,23 @@ function renderHand(cards, containerId, isPlayer) {
       `;
 
       el.addEventListener('click', () => onHandCardClick(i));
+      
+      // Delayed zoom logic
+      let hoverTimeout;
+      el.addEventListener('mouseenter', () => {
+        hoverTimeout = setTimeout(() => {
+          if (card.image) {
+            const popup = document.getElementById('card-image-popup');
+            const popupImg = document.getElementById('popup-img');
+            popupImg.src = card.image;
+            popup.classList.add('active');
+          }
+        }, 2000);
+      });
+      el.addEventListener('mouseleave', () => {
+        clearTimeout(hoverTimeout);
+        document.getElementById('card-image-popup').classList.remove('active');
+      });
     } else {
       // AI hand — face down, non-interactive
       el.className = 'card';
@@ -165,6 +182,24 @@ function renderBoard(cards, containerId, isAI) {
     `;
 
     el.addEventListener('click', () => onBoardCardClick(card, isAI));
+
+    // Delayed zoom logic
+    let hoverTimeout;
+    el.addEventListener('mouseenter', () => {
+      hoverTimeout = setTimeout(() => {
+        if (card.image) {
+          const popup = document.getElementById('card-image-popup');
+          const popupImg = document.getElementById('popup-img');
+          popupImg.src = card.image;
+          popup.classList.add('active');
+        }
+      }, 2000);
+    });
+    el.addEventListener('mouseleave', () => {
+      clearTimeout(hoverTimeout);
+      document.getElementById('card-image-popup').classList.remove('active');
+    });
+
     container.appendChild(el);
   }
 
@@ -179,14 +214,35 @@ function renderBoard(cards, containerId, isAI) {
     heroEl.style.background = 'linear-gradient(180deg, #4a1a2e 0%, #2d0f15 100%)';
     heroEl.style.border = '3px solid #c0392b';
     heroEl.innerHTML = `
-      <div class="card-art">👹</div>
-      <div class="card-name">AI Hero</div>
+      ${gs.ai.heroImage ? `<img src="hero-cards/${gs.ai.heroImage}" alt="AI Hero" class="card-image">` : `<div class="card-art">👹</div>`}
+      <div class="card-name">${gs.ai.heroImage ? gs.ai.heroImage.split('-')[1].replace(/([A-Z])/g, ' $1').trim() : 'AI Hero'}</div>
       <div class="card-stats" style="justify-content:center;"><span class="hp">♥${gs.ai.health}</span></div>
     `;
     heroEl.addEventListener('click', (e) => {
       e.stopPropagation();
       if (gs.attackerId !== null) executePlayerAttack(null);
     });
+
+    // Hero cards zoom on hover
+    let heroHoverTimeout;
+    heroEl.addEventListener('mouseenter', () => {
+      heroEl.classList.add('zoomed');
+      heroHoverTimeout = setTimeout(() => {
+        const heroImg = gs.ai.heroImage ? `hero-cards/${gs.ai.heroImage}` : null;
+        if (heroImg) {
+          const popup = document.getElementById('card-image-popup');
+          const popupImg = document.getElementById('popup-img');
+          popupImg.src = heroImg;
+          popup.classList.add('active');
+        }
+      }, 2000);
+    });
+    heroEl.addEventListener('mouseleave', () => {
+      heroEl.classList.remove('zoomed');
+      clearTimeout(heroHoverTimeout);
+      document.getElementById('card-image-popup').classList.remove('active');
+    });
+
     container.insertBefore(heroEl, container.firstChild);
   } else {
     const heroEl = document.createElement('div');
@@ -198,14 +254,35 @@ function renderBoard(cards, containerId, isAI) {
     heroEl.style.background = 'linear-gradient(180deg, #1a2e4a 0%, #0f152d 100%)';
     heroEl.style.border = '3px solid #35b5ff';
     heroEl.innerHTML = `
-      <div class="card-art">🧙</div>
-      <div class="card-name">Your Hero</div>
+      ${gs.player.heroImage ? `<img src="hero-cards/${gs.player.heroImage}" alt="Your Hero" class="card-image">` : `<div class="card-art">🧙</div>`}
+      <div class="card-name">${gs.player.heroImage ? gs.player.heroImage.split('-')[1].replace(/([A-Z])/g, ' $1').trim() : 'Your Hero'}</div>
       <div class="card-stats" style="justify-content:center;"><span class="hp">♥${gs.player.health}</span></div>
     `;
     heroEl.addEventListener('click', (e) => {
       e.stopPropagation();
       if (gs.turn === 'ai' && gs._aiAttackerId !== null) executeAiAttack(null);
     });
+
+    // Hero cards zoom on hover
+    let heroHoverTimeout;
+    heroEl.addEventListener('mouseenter', () => {
+      heroEl.classList.add('zoomed');
+      heroHoverTimeout = setTimeout(() => {
+        const heroImg = gs.player.heroImage ? `hero-cards/${gs.player.heroImage}` : null;
+        if (heroImg) {
+          const popup = document.getElementById('card-image-popup');
+          const popupImg = document.getElementById('popup-img');
+          popupImg.src = heroImg;
+          popup.classList.add('active');
+        }
+      }, 2000);
+    });
+    heroEl.addEventListener('mouseleave', () => {
+      heroEl.classList.remove('zoomed');
+      clearTimeout(heroHoverTimeout);
+      document.getElementById('card-image-popup').classList.remove('active');
+    });
+
     container.insertBefore(heroEl, container.firstChild);
   }
 }

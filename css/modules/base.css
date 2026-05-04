@@ -41,6 +41,7 @@ body {
   font-weight: bold;
   box-shadow: 0 4px 0px #1a0a0a;
   transition: all 0.1s;
+  cursor: pointer;
 }
 .btn:active { box-shadow: 0 0px 0px transparent; transform: translateY(4px); }
 .btn-end-turn { 

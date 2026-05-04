@@ -190,24 +190,21 @@ function stopTimer() {
 /* --- End-of-Turn Effects --- */
 
 /** Process end-of-turn effects for a player's board.
- *  Resolves: Regen (heal 1 HP/turn), Silvayus Heal (restore 1 HP to hero).
  *  @param {string} owner — 'player' or 'ai' */
 function processEndOfTurn(owner) {
   const board = owner === 'player' ? gs.player.board : gs.ai.board;
 
-  // Regen ability: heal 1 HP at end of turn
-  board.forEach(c => {
-    if (c.ability === 'Regen' && c.health < c.maxHealth) {
-      c.health = Math.min(c.maxHealth, c.health + 1);
-    }
-  });
+  board.forEach(card => {
+    const abilities = card.abilities || [];
+    if (card.ability) abilities.unshift(card.ability);
 
-  // Silvayus Heal: restore 1 HP to hero at end of turn
-  board.forEach(c => {
-    if (c.ability === 'Heal' && c.name.includes('Silvayus')) {
-      if (owner === 'player') { gs.player.health = Math.min(20, gs.player.health + 1); }
-      else { gs.ai.health = Math.min(20, gs.ai.health + 1); }
-    }
+    abilities.forEach(abilityStr => {
+        const lower = abilityStr.toLowerCase();
+        // Check for periodic effects: "each turn", "per turn", "start/end of turn"
+        if (lower.includes('turn') && !lower.includes('first turn')) {
+            processAbilityEffect(card, abilityStr, owner);
+        }
+    });
   });
 
   cleanupDeadMinions();

@@ -246,7 +246,8 @@ function playCard(handIdx, owner) {
   hand.splice(handIdx, 1);
 
   // Add to board — set canAttack based on Rush/Charge abilities
-  card.canAttack = (card.ability === 'Rush' || card.ability === 'Pierce' || card.ability === 'Flame Rush');
+  const lowerAbilities = card.abilities.map(a => a.toLowerCase());
+  card.canAttack = lowerAbilities.some(a => a.includes('rush') || a.includes('pierce') || a.includes('charge') || a.includes('flight'));
   board.push(card);
 
   // Apply battlecry
@@ -266,199 +267,171 @@ function playCard(handIdx, owner) {
  *  @param {Object} card — the card object being played
  *  @param {string} owner — 'player' or 'ai' */
 function applyBattlecry(card, owner) {
-  const enemy = owner === 'player' ? gs.ai : gs.player;
+  const abilities = card.abilities || [];
 
-  switch (card.ability) {
-    case 'Fireball': {
+  if (abilities.length === 0) {
+    log(card.name + ' enters the battlefield.');
+    return;
+  }
+
+  abilities.forEach(abilityStr => {
+    // Only process "immediate" abilities (Battlecries)
+    // Avoid abilities that trigger "at the start/end of turn" or "each turn"
+    const lower = abilityStr.toLowerCase();
+    if (lower.includes('turn') && !lower.includes('first turn')) return;
+
+    processAbilityEffect(card, abilityStr, owner);
+  });
+}
+
+/** Internal helper to parse and execute an ability string. */
+function processAbilityEffect(card, abilityStr, owner) {
+  const lower = abilityStr.toLowerCase();
+  const enemy = owner === 'player' ? gs.ai : gs.player;
+  const myState = owner === 'player' ? gs.player : gs.ai;
+
+  let triggered = false;
+  let effectName = "";
+
+  // 1. Draw cards
+  if (lower.includes('draw')) {
+    const match = lower.match(/draw (\d+)/);
+    const count = match ? parseInt(match[1]) : 1;
+    for (let i = 0; i < count; i++) {
+      if (myState.deck.length > 0) myState.hand.push(myState.deck.pop());
+    }
+    effectName = `Draw ${count}`;
+    triggered = true;
+  }
+
+  // 2. Deal Damage
+  if (lower.includes('deal')) {
+    const match = lower.match(/deal (\d+)/);
+    const damage = match ? parseInt(match[1]) : 1;
+
+    if (lower.includes('all enemies') || lower.includes('everything')) {
+      enemy.board.forEach(c => c.health -= damage);
+      enemy.health -= damage;
+      myState.board.forEach(c => { if (c.id !== card.id) c.health -= damage; });
+      if (lower.includes('everything')) myState.health -= damage;
+      effectName = "Area Blast";
+    } else if (lower.includes('all enemy minions')) {
+      enemy.board.forEach(c => c.health -= damage);
+      effectName = "Enemy Sweep";
+    } else if (lower.includes('a minion') || lower.includes('enemy minion')) {
       if (enemy.board.length > 0) {
         const target = enemy.board[Math.floor(Math.random() * enemy.board.length)];
-        target.health -= 1;
-        log(card.name + ' fires at ' + target.name + '!');
+        target.health -= damage;
+        effectName = `Strike ${target.name}`;
+      }
+    } else if (lower.includes('random enemy')) {
+      if (enemy.board.length > 0 && Math.random() < 0.5) {
+        const target = enemy.board[Math.floor(Math.random() * enemy.board.length)];
+        target.health -= damage;
       } else {
-        enemy.health -= 1;
-        log(card.name + ' hits the hero for 1!');
+        enemy.health -= damage;
       }
-      break;
+      effectName = "Random Shot";
+    } else if (lower.includes('any target')) {
+        // AI chooses random enemy, player could have UI but for now random
+        if (enemy.board.length > 0 && Math.random() < 0.5) {
+            const target = enemy.board[Math.floor(Math.random() * enemy.board.length)];
+            target.health -= damage;
+        } else {
+            enemy.health -= damage;
+        }
+        effectName = "Precision Strike";
     }
+    triggered = true;
+  }
 
-    case 'Inferno': {
-      enemy.board.forEach(c => { c.health -= 2; });
-      log(card.name + ' unleashes Inferno!');
-      break;
+  // 3. Heal / Restore
+  if (lower.includes('restore') || lower.includes('heal')) {
+    const match = lower.match(/(\d+) health/);
+    const amount = match ? parseInt(match[1]) : 2;
+
+    if (lower.includes('your hero') || lower.includes('hero')) {
+      myState.health = Math.min(20, myState.health + amount);
+      effectName = "Heal Hero";
+    } else if (lower.includes('all friends')) {
+      myState.board.forEach(c => c.health = Math.min(c.maxHealth, c.health + amount));
+      myState.health = Math.min(20, myState.health + amount);
+      effectName = "Group Heal";
     }
+    triggered = true;
+  }
 
-    case 'Freeze': {
-      const targets = enemy.board.filter(c => !c.frozen);
-      if (targets.length > 0) {
-        const target = targets[Math.floor(Math.random() * targets.length)];
-        target.frozen = true;
-        log(card.name + ' freezes ' + target.name + '!');
+  // 4. Summon tokens
+  if (lower.includes('summon')) {
+    const board = myState.board;
+    if (board.length < 7) {
+      if (lower.includes('skeleton')) {
+        board.push(createCardInstance({ name:'Skeleton', manaCost:0, attack:1, health:1, mythology: card.mythology, abilities:[] }));
+      } else if (lower.includes('construct')) {
+        board.push(createCardInstance({ name:'Construct', manaCost:0, attack:2, health:1, mythology: card.mythology, abilities:[] }));
+      } else if (lower.includes('spirit')) {
+        board.push(createCardInstance({ name:'Spirit', manaCost:0, attack:2, health:2, mythology: card.mythology, abilities:[] }));
+      } else if (lower.includes('valkyrie')) {
+        board.push(createCardInstance({ name:'Valkyrie', manaCost:0, attack:1, health:2, mythology: card.mythology, abilities:[] }));
       }
-      break;
-    }
-
-    case 'Chill': {
-      const targets = enemy.board.filter(c => c.attack > 0);
-      if (targets.length > 0) {
-        const target = targets[Math.floor(Math.random() * targets.length)];
-        target.attack -= 1;
-        log(card.name + ' chills ' + target.name + '!');
-      }
-      break;
-    }
-
-    case 'Cleave': {
-      const board = owner === 'player' ? gs.player.board : gs.ai.board;
-      board.forEach(c => { if (c.id !== card.id) c.health -= 1; });
-      log(card.name + ' cleaves all other minions!');
-      break;
-    }
-
-    case 'Heal': {
-      if (owner === 'player') {
-        gs.player.health = Math.min(20, gs.player.health + 2);
-      } else {
-        gs.ai.health = Math.min(20, gs.ai.health + 2);
-      }
-      log(card.name + ' heals for 2 HP!');
-      break;
-    }
-
-    case 'Shield': {
-      card.health += 1;
-      card.maxHealth += 1;
-      log(card.name + ' gains a shield! (+1 HP)');
-      break;
-    }
-
-    case 'Drain': {
-      if (owner === 'player') {
-        gs.ai.health -= 2;
-        gs.player.health = Math.min(20, gs.player.health + 2);
-      } else {
-        gs.player.health -= 2;
-        gs.ai.health = Math.min(20, gs.ai.health + 2);
-      }
-      log(card.name + ' drains life!');
-      break;
-    }
-
-    case 'Summon Ice': {
-      const board = owner === 'player' ? gs.player.board : gs.ai.board;
-      board.push(createCardInstance({ name:'Frost Elemental', manaCost:0, attack:1, health:2, archetype:'Ice Sorcerer', ability:'', abilityDesc:'', art:'🧊' }));
-      log(card.name + ' summons a Frost Elemental!');
-      break;
-    }
-
-    case 'Flame Rush': {
-      card.canAttack = true; // Charge
-      if (owner === 'player') { gs.player.health -= 1; } else { gs.ai.health -= 1; }
-      log(card.name + ' rushes in!');
-      break;
-    }
-
-    case 'Gust': {
-      enemy.board.forEach(c => { c.health -= 1; });
-      log(card.name + ' summons a gust!');
-      break;
-    }
-
-    case 'Stealth': {
-      card.stealthed = true;
-      log(card.name + ' becomes stealthed!');
-      break;
-    }
-
-    case 'Taunt': {
-      card.taunt = true;
-      log(card.name + ' gains Taunt!');
-      break;
-    }
-
-    case 'Pierce': {
-      card.canAttack = true; // Charge
-      break;
-    }
-
-    case 'Rush': {
-      card.canAttack = true; // Already set, but explicit
-      break;
-    }
-
-    case 'Swarm': {
-      const board = owner === 'player' ? gs.player.board : gs.ai.board;
-      for (let s = 0; s < 2; s++) {
-        board.push(createCardInstance({ name:'Skeleton', manaCost:0, attack:1, health:1, archetype:'Undead', ability:'', abilityDesc:'', art:'💀' }));
-      }
-      log('Skeletons rise from the dead!');
-      break;
-    }
-
-    // Deathrattle abilities — handled in cleanupDeadMinions
-    case 'Burn':
-    case 'Reborn':
-    case 'Return':
-      // No battlecry effect
-      break;
-
-    default: {
-      if (card.abilities && card.abilities.length > 0) {
-        card.abilities.forEach(abilityStr => {
-          const lower = abilityStr.toLowerCase();
-
-          // Divine Strategy: Draw 2 cards
-          if (lower.includes("draw") && lower.includes("cards")) {
-            const match = lower.match(/draw (\d+) cards?/);
-            const count = match ? parseInt(match[1]) : 1;
-            const myState = owner === 'player' ? gs.player : gs.ai;
-            for (let i = 0; i < count; i++) {
-              if (myState.deck.length > 0) myState.hand.push(myState.deck.pop());
-            }
-            log(card.name + " triggers: Draw " + count + " cards");
-          }
-
-          // Shield of Aegis: Prevent 5 damage to your hero
-          if (lower.includes("prevent") && lower.includes("damage")) {
-            const match = lower.match(/prevent (\d+) damage/);
-            const amount = match ? parseInt(match[1]) : 2;
-            const myState = owner === 'player' ? gs.player : gs.ai;
-            myState.health = Math.min(20, myState.health + amount);
-            log(card.name + " triggers: Protects hero (Restored " + amount + " HP)");
-          }
-
-          // Thunderbolt: Deal 5 damage to all enemy minions
-          if (lower.includes("deal") && lower.includes("damage to all enemy minions")) {
-            const match = lower.match(/deal (\d+) damage/);
-            const damage = match ? parseInt(match[1]) : 2;
-            enemy.board.forEach(c => c.health -= damage);
-            log(card.name + " triggers: Deal " + damage + " damage to ALL enemies");
-          }
-          
-          // Generic "Deal X damage to a minion"
-          else if (lower.includes("deal") && lower.includes("damage to a minion")) {
-             const match = lower.match(/deal (\d+) damage/);
-             const damage = match ? parseInt(match[1]) : 2;
-             if (enemy.board.length > 0) {
-                const target = enemy.board[Math.floor(Math.random() * enemy.board.length)];
-                target.health -= damage;
-                log(card.name + " fires at " + target.name + " for " + damage + "!");
-             }
-          }
-
-          // Restore X health to your hero
-          if (lower.includes("restore") && lower.includes("health to your hero")) {
-            const match = lower.match(/restore (\d+) health/);
-            const amount = match ? parseInt(match[1]) : 3;
-            const myState = owner === 'player' ? gs.player : gs.ai;
-            myState.health = Math.min(20, myState.health + amount);
-            log(card.name + " triggers: Restore " + amount + " HP");
-          }
-        });
-      } else {
-        log(card.name + ' plays.');
-      }
+      effectName = "Summoning";
+      triggered = true;
     }
   }
+
+  // 5. Stat Boosts
+  if (lower.includes('give') || lower.includes('gain')) {
+    const atkMatch = lower.match(/\+(\d+) attack/);
+    const hpMatch = lower.match(/\+(\d+) health/);
+    const atk = atkMatch ? parseInt(atkMatch[1]) : 0;
+    const hp = hpMatch ? parseInt(hpMatch[1]) : 0;
+
+    if (lower.includes('all friendly minions') || lower.includes('your other minions')) {
+        myState.board.forEach(c => {
+            if (c.id !== card.id) {
+                c.attack += atk;
+                c.health += hp;
+                c.maxHealth += hp;
+            }
+        });
+        effectName = "War Cry";
+    } else if (lower.includes('a minion')) {
+        if (myState.board.length > 1) {
+            const target = myState.board.find(c => c.id !== card.id) || myState.board[0];
+            target.attack += atk;
+            target.health += hp;
+            target.maxHealth += hp;
+            effectName = `Buff ${target.name}`;
+        }
+    }
+    triggered = true;
+  }
+
+  // Keywords
+  if (lower.includes('taunt')) { card.taunt = true; effectName="Taunt"; triggered=true; }
+  if (lower.includes('stealth')) { card.stealthed = true; effectName="Stealth"; triggered=true; }
+  if (lower.includes('freeze')) {
+      if (enemy.board.length > 0) {
+          const target = enemy.board[Math.floor(Math.random() * enemy.board.length)];
+          target.frozen = true;
+          effectName = `Freeze ${target.name}`;
+          triggered = true;
+      }
+  }
+
+  if (triggered) {
+    log(`${card.name} triggers: ${effectName || abilityStr}`);
+    showAbilityEffect(card);
+  }
+}
+
+/** Visual feedback for ability triggers */
+function showAbilityEffect(card) {
+    const el = document.querySelector(`[data-id="${card.id}"]`);
+    if (el) {
+        el.classList.add('trigger-ability');
+        setTimeout(() => el.classList.remove('trigger-ability'), 800);
+    }
 }
 
 /* --- Deathrattle Abilities (On-Death Effects) --- */

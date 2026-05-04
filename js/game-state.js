@@ -37,18 +37,26 @@ function shuffle(arr) {
 
 /** Create a card instance from a template with unique ID */
 function createCardInstance(template) {
+  // Ensure we have a clean abilities array
+  let abilities = [];
+  if (Array.isArray(template.abilities)) {
+    abilities = [...template.abilities];
+  } else if (typeof template.ability === 'string' && template.ability.trim() !== "") {
+    abilities = [template.ability];
+  }
+
   return {
     id: nextCardId++,
-    name: template.name,
-    manaCost: template.manaCost,
-    attack: template.attack,
-    health: template.health,
-    maxHealth: template.health,
-    typeLine: template.typeLine,
-    mythology: template.mythology,
-    rarity: template.rarity,
-    abilities: template.abilities || [],
-    image: template.image,
+    name: template.name || "Unknown Card",
+    manaCost: template.manaCost || 0,
+    attack: template.attack || 0,
+    health: template.health || 1,
+    maxHealth: template.health || 1,
+    typeLine: template.typeLine || "Creature",
+    mythology: template.mythology || "Unknown",
+    rarity: template.rarity || "Common",
+    abilities: abilities,
+    image: template.image || "",
     canAttack: false,   // summoning sickness (unless Rush/Charge)
     frozen: false,      // can't attack while frozen
     stealthed: false,   // immune to abilities (not used in combat)

@@ -11,7 +11,10 @@ body {
   background: #1a0f0a; /* Deep warm brown */
   background-image: 
     radial-gradient(circle at 50% 50%, rgba(61, 43, 31, 0.4) 0%, rgba(26, 15, 10, 0.9) 100%),
-    url('https://www.transparenttextures.com/patterns/dark-leather.png');
+    url('../background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: #e8ddc0; /* Match parchment color for text */
   min-height: 100vh;
   overflow-x: hidden;

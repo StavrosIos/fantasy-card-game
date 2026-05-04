@@ -43,10 +43,14 @@ function showGameOver(playerWon) {
     title.textContent = '🏆 VICTORY!';
     title.className = 'win';
     sub.textContent = 'You defeated the AI opponent!';
+    const sound = document.getElementById('victory-sound');
+    if (sound) sound.play().catch(e => console.log("Audio play failed:", e));
   } else {
     title.textContent = '💀 DEFEAT';
     title.className = 'lose';
     sub.textContent = 'The AI has bested you. Try again!';
+    const sound = document.getElementById('defeat-sound');
+    if (sound) sound.play().catch(e => console.log("Audio play failed:", e));
   }
 
   overlay.classList.add('active');

@@ -13,6 +13,8 @@ let gs = {
   phase: 'main',            // main | aiThinking
   attackerId: null,         // id of player's board card selected to attack with
   turnNumber: 1,
+  turnTimer: 20,
+  timerInterval: null,
 };
 
 let nextCardId = 1; // unique ID counter for board cards

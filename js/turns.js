@@ -18,6 +18,8 @@
 function endPlayerTurn() {
   if (gs.turn !== 'player' || gs.phase === 'aiThinking') return;
 
+  stopTimer();
+
   // Process end-of-turn effects for player board
   processEndOfTurn('player');
 
@@ -99,40 +101,24 @@ function aiTurnStep() {
       // Must attack taunt minion
       const target = playerTaunts[Math.floor(Math.random() * playerTaunts.length)];
       gs._aiAttackerId = attacker.id;
-
-      let atk = attacker.attack;
-      if (attacker.ability === 'Poison') atk += 1;
-
-      target.health -= atk;
-      attacker.health -= target.attack;
-      log('AI ' + attacker.name + ' attacks ' + target.name + '!');
-
-      cleanupDeadMinions();
+      executeAiAttack(target.id);
     } else if (gs.player.board.length > 0 && Math.random() < 0.6) {
       // Sometimes attack a minion (40% chance to attack hero instead)
       const target = gs.player.board[Math.floor(Math.random() * gs.player.board.length)];
       gs._aiAttackerId = attacker.id;
-
-      let atk = attacker.attack;
-      if (attacker.ability === 'Poison') atk += 1;
-
-      target.health -= atk;
-      attacker.health -= target.attack;
-      log('AI ' + attacker.name + ' attacks ' + target.name + '!');
-
-      cleanupDeadMinions();
+      executeAiAttack(target.id);
     } else {
       // Attack player hero
       gs._aiAttackerId = attacker.id;
-      gs.player.health -= attacker.attack;
-      log('AI ' + attacker.name + ' attacks you for ' + attacker.attack + '!');
+      executeAiAttack(null);
     }
 
     attacker.hasAttacked = true;
-    render();
+    // Don't call render() here because the animation + finalizeAttack will do it
+    // render(); 
 
-    // Continue with next attacker
-    setTimeout(() => aiTurnStep(), 600);
+    // Continue with next action after a delay that accounts for the attack animation (approx 400ms)
+    setTimeout(() => aiTurnStep(), 1000);
     return;
   }
 
@@ -157,6 +143,48 @@ function aiTurnStep() {
   gs.turnNumber++;
   render();
   log('Your turn — Turn ' + gs.turnNumber);
+  
+  // Only start timer for player
+  if (gs.turn === 'player') {
+    startTimer();
+  }
+}
+
+/* --- Turn Timer --- */
+
+/** Start the 20-second turn timer for the player. */
+function startTimer() {
+  stopTimer();
+  gs.turnTimer = 20;
+  render();
+
+  gs.timerInterval = setInterval(() => {
+    gs.turnTimer--;
+
+    if (gs.turnTimer <= 3 && gs.turnTimer > 0) {
+      const sound = document.getElementById('clock-sound');
+      if (sound) {
+        sound.currentTime = 0;
+        sound.play().catch(e => console.log("Audio play failed:", e));
+      }
+    }
+
+    if (gs.turnTimer <= 0) {
+      gs.turnTimer = 0;
+      stopTimer();
+      log("Time's up!");
+      endPlayerTurn();
+    }
+    renderTimer(); // Only update timer UI to prevent card jumping
+  }, 1000);
+}
+
+/** Stop and clear the turn timer. */
+function stopTimer() {
+  if (gs.timerInterval) {
+    clearInterval(gs.timerInterval);
+    gs.timerInterval = null;
+  }
 }
 
 /* --- End-of-Turn Effects --- */

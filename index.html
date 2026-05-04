@@ -39,8 +39,11 @@
       <div class="deck-info">Deck: <span id="ai-deck-count">0</span></div>
     </div>
 
-    <!-- Turn Indicator -->
-    <div class="turn-indicator player-turn" id="turn-indicator">Your Turn</div>
+    <!-- Turn Indicator & Timer -->
+    <div class="turn-header">
+      <div class="turn-indicator player-turn" id="turn-indicator">Your Turn</div>
+      <div id="turn-timer" class="turn-timer">20</div>
+    </div>
 
     <!-- AI Board -->
     <div class="board-area">
@@ -82,6 +85,9 @@
   <script src="js/combat.js"></script>
   <script src="js/turns.js"></script>
   <script src="js/game.js"></script>
+
+  <!-- Audio for Timer -->
+  <audio id="clock-sound" src="https://assets.mixkit.co/active_storage/sfx/2358/2358-preview.mp3" preload="auto"></audio>
 
 </body>
 </html>

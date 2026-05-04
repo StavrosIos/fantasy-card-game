@@ -90,6 +90,9 @@ function executePlayerAttack(targetId) {
   const attacker = gs.player.board.find(c => c.id === gs.attackerId);
   if (!attacker) return;
 
+  const attackerEl = document.querySelector(`[data-id="${attacker.id}"]`);
+  let defenderEl = null;
+
   // Check taunt: must attack taunt minions first
   const enemyTaunts = gs.ai.board.filter(c => c.taunt);
   if (enemyTaunts.length > 0 && targetId !== null) {
@@ -102,27 +105,29 @@ function executePlayerAttack(targetId) {
 
   if (targetId === null) {
     // Attack AI hero
-    gs.ai.health -= attacker.attack;
-    log(attacker.name + ' attacks AI for ' + attacker.attack + '!');
+    defenderEl = document.querySelector('.ai-board .hero-card');
+    animateAttack(attackerEl, defenderEl, () => {
+      gs.ai.health -= attacker.attack;
+      log(attacker.name + ' attacks AI for ' + attacker.attack + '!');
+      finalizeAttack(attacker);
+    });
   } else {
     // Attack enemy minion
     const defender = gs.ai.board.find(c => c.id === targetId);
     if (!defender) return;
 
-    let atk = attacker.attack;
-    if (attacker.ability === 'Poison') atk += 1;
+    defenderEl = document.querySelector(`[data-id="${defender.id}"]`);
 
-    defender.health -= atk;
-    attacker.health -= defender.attack;
-    log(attacker.name + ' attacks ' + defender.name + '! (' + atk + ' vs ' + defender.attack + ')');
+    animateAttack(attackerEl, defenderEl, () => {
+      let atk = attacker.attack;
+      if (attacker.ability === 'Poison') atk += 1;
+
+      defender.health -= atk;
+      attacker.health -= defender.attack;
+      log(attacker.name + ' attacks ' + defender.name + '! (' + atk + ' vs ' + defender.attack + ')');
+      finalizeAttack(attacker);
+    });
   }
-
-  attacker.hasAttacked = true;
-  gs.attackerId = null;
-
-  cleanupDeadMinions();
-  checkWinCondition();
-  render();
 }
 
 /** AI attacks with its selected minion.
@@ -130,6 +135,9 @@ function executePlayerAttack(targetId) {
 function executeAiAttack(targetId) {
   const attacker = gs.ai.board.find(c => c.id === gs._aiAttackerId);
   if (!attacker) return;
+
+  const attackerEl = document.querySelector(`[data-id="${attacker.id}"]`);
+  let defenderEl = null;
 
   // Check taunt: must attack player taunts first
   const playerTaunts = gs.player.board.filter(c => c.taunt);
@@ -143,27 +151,68 @@ function executeAiAttack(targetId) {
 
   if (targetId === null) {
     // Attack player hero
-    gs.player.health -= attacker.attack;
-    log('AI ' + attacker.name + ' attacks you for ' + attacker.attack + '!');
+    defenderEl = document.querySelector('.player-board .hero-card');
+    animateAttack(attackerEl, defenderEl, () => {
+      gs.player.health -= attacker.attack;
+      log('AI ' + attacker.name + ' attacks you for ' + attacker.attack + '!');
+      finalizeAttack(attacker);
+    });
   } else {
     // Attack player minion
     const defender = gs.player.board.find(c => c.id === targetId);
     if (!defender) return;
 
-    let atk = attacker.attack;
-    if (attacker.ability === 'Poison') atk += 1;
+    defenderEl = document.querySelector(`[data-id="${defender.id}"]`);
+    animateAttack(attackerEl, defenderEl, () => {
+      let atk = attacker.attack;
+      if (attacker.ability === 'Poison') atk += 1;
 
-    defender.health -= atk;
-    attacker.health -= defender.attack;
-    log('AI ' + attacker.name + ' attacks ' + defender.name + '!');
+      defender.health -= atk;
+      attacker.health -= defender.attack;
+      log('AI ' + attacker.name + ' attacks ' + defender.name + '!');
+      finalizeAttack(attacker);
+    });
   }
+}
 
+/** Finalize attack state changes and render */
+function finalizeAttack(attacker) {
   attacker.hasAttacked = true;
+  gs.attackerId = null;
   gs._aiAttackerId = null;
 
   cleanupDeadMinions();
   checkWinCondition();
   render();
+}
+
+/** Animate an attack from one element to another. */
+function animateAttack(attackerEl, defenderEl, onImpact) {
+  if (!attackerEl || !defenderEl) {
+    onImpact();
+    return;
+  }
+
+  const rectA = attackerEl.getBoundingClientRect();
+  const rectB = defenderEl.getBoundingClientRect();
+
+  const deltaX = rectB.left + rectB.width / 2 - (rectA.left + rectA.width / 2);
+  const deltaY = rectB.top + rectB.height / 2 - (rectA.top + rectA.height / 2);
+
+  attackerEl.classList.add('attacking');
+  attackerEl.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.1)`;
+
+  setTimeout(() => {
+    // Impact
+    defenderEl.classList.add('hit');
+    onImpact();
+
+    setTimeout(() => {
+      attackerEl.style.transform = '';
+      attackerEl.classList.remove('attacking');
+      defenderEl.classList.remove('hit');
+    }, 200);
+  }, 200);
 }
 
 /* --- Play Card — Move from Hand to Board --- */

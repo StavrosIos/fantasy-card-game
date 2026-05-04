@@ -14,6 +14,9 @@
 
 /** Draw the entire game state to the DOM. */
 function render() {
+  // Timer display
+  renderTimer();
+
   // Health & mana displays
   document.getElementById('player-health').textContent = gs.player.health + ' HP';
   document.getElementById('player-mana').textContent = gs.player.mana + ' / ' + gs.player.maxMana + ' Mana';
@@ -124,6 +127,23 @@ function renderHand(cards, containerId, isPlayer) {
  *  @param {Array} cards — array of card objects on the board
  *  @param {string} containerId — DOM element ID to render into
  *  @param {boolean} isAI — true for AI board, false for player board */
+/** Update only the timer UI element to prevent full re-renders every second. */
+function renderTimer() {
+  const timerEl = document.getElementById('turn-timer');
+  if (!timerEl) return;
+
+  timerEl.textContent = gs.turnTimer;
+  if (gs.turnTimer <= 3) {
+    timerEl.classList.add('warning');
+  } else {
+    timerEl.classList.remove('warning');
+  }
+
+  // Hide timer during AI thinking to focus on AI actions, 
+  // or keep it visible but maybe dimmed. Let's keep it visible.
+  timerEl.style.opacity = gs.turn === 'player' ? '1' : '0.5';
+}
+
 function renderBoard(cards, containerId, isAI) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';

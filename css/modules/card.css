@@ -219,6 +219,25 @@
   100% { box-shadow: 0 0 5px #e74c3c; }
 }
 
+/* Attack & Hit Effects */
+.card.attacking {
+  z-index: 1000;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card.hit {
+  animation: hit-shake 0.4s ease-out;
+}
+
+@keyframes hit-shake {
+  0% { transform: translateX(0); filter: brightness(1.5) sepia(1) hue-rotate(-50deg); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+  100% { transform: translateX(0); filter: brightness(1); }
+}
+
 .card.frozen {
   filter: hue-rotate(180deg) brightness(1.2);
 }

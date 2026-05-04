@@ -96,6 +96,7 @@ async function initGame() {
 
   log('Game started! You draw 3 cards. Click a card to play it.');
   render();
+  startTimer();
 }
 
 // Start the game on load

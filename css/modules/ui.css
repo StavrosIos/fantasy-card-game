@@ -1,0 +1,59 @@
+/* --- Player Bars --- */
+.player-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-radius: 15px;
+  margin-bottom: 8px;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.5), 0 4px 8px rgba(0,0,0,0.6);
+  border: 2px solid #3d2b1f;
+}
+
+.player-bar.ai { 
+  background: linear-gradient(135deg, #c5b394 0%, #a89372 100%); 
+  border-color: #3d2b1f;
+  color: #2c1a1a;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2), 0 4px 8px rgba(0,0,0,0.5);
+}
+.player-bar.me { 
+  background: linear-gradient(135deg, #e8ddc0 0%, #c5b394 100%); 
+  border-color: #3d2b1f;
+  color: #2c1a1a;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.player-name { 
+  font-family: 'Cinzel', serif;
+  font-size: 1.5em; 
+  letter-spacing: 1.5px;
+  color: #2c1a1a !important; /* Force override of inline styles */
+  font-weight: 700;
+  text-shadow: 1px 1px 1px rgba(255,255,255,0.4);
+}
+
+.deck-info {
+  font-size: 1em;
+  color: #3d2b1f;
+  font-weight: bold;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.stat-badge {
+  padding: 6px 16px; border-radius: 6px; font-weight: bold;
+  font-size: 1em; border: 2px solid #3d2b1f;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.stat-badge.health { background: #c0392b; color: #fff; }
+.stat-badge.mana   { background: #2980b9; color: #fff; }
+
+.turn-indicator {
+  text-align: center; padding: 12px; border-radius: 8px;
+  font-family: 'Cinzel', serif; font-size: 1.3em; margin-bottom: 15px;
+  border: 2px solid #c5b394;
+  background: #e8ddc0;
+  color: #3d2b1f;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+.turn-indicator.player-turn { color: #2ecc71; border-color: #2ecc7144; }
+.turn-indicator.ai-turn     { color: #e74c3c; border-color: #e74c3c44; }

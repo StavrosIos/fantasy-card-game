@@ -1,0 +1,83 @@
+/* --- Board Area --- */
+.board-area {
+  flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 15px;
+}
+.board-row {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center cards vertically in the row */
+  gap: 20px;
+  padding: 30px 20px;
+  border-radius: 20px;
+  min-height: 280px; /* Further increased to accommodate larger card images */
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 0 60px rgba(0, 0, 0, 0.9),
+    0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 4px solid #3d2b1f; /* Stronger border for "physical" feel */
+}
+
+/* Atmospheric effects for the board */
+.board-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url('https://www.transparenttextures.com/patterns/stardust.png'),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 80%);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 1;
+  animation: board-pulse-glow 10s infinite alternate ease-in-out;
+}
+
+/* Mist effect */
+.board-row::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  background-size: 200% 100%;
+  animation: mist-drift 20s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes board-pulse-glow {
+  0% { opacity: 0.3; transform: scale(1); }
+  100% { opacity: 0.6; transform: scale(1.05); }
+}
+
+@keyframes mist-drift {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.ai-board {
+  background: 
+    linear-gradient(to bottom, #c5b394, #e2d4b7),
+    url('https://www.transparenttextures.com/patterns/pinstriped-suit.png');
+  border-color: #3d2b1f;
+  box-shadow: 
+    inset 0 0 100px rgba(0, 0, 0, 0.2),
+    inset 0 10px 30px rgba(0, 0, 0, 0.1),
+    inset 0 -10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.player-board {
+  background: 
+    linear-gradient(to top, #e8ddc0, #e2d4b7),
+    url('https://www.transparenttextures.com/patterns/sandpaper.png');
+  border-color: #3d2b1f;
+  box-shadow: 
+    inset 0 0 100px rgba(0, 0, 0, 0.15),
+    inset 0 -10px 30px rgba(0, 0, 0, 0.1),
+    inset 0 10px 30px rgba(0, 0, 0, 0.3);
+}

@@ -17,9 +17,11 @@
     <button class="btn btn-restart" onclick="initGame()">Play Again</button>
   </div>
 
-  <!-- Card Image Popup (delayed hover) -->
-  <div id="card-image-popup">
-    <img id="popup-img" src="" alt="Card Zoom">
+  <!-- Card Image Popup -->
+  <div id="card-image-popup" onclick="this.classList.remove('active')">
+    <div class="popup-content" onclick="event.stopPropagation()">
+      <img id="popup-img" src="" alt="Card Zoom">
+    </div>
   </div>
 
   <!-- ============================================================

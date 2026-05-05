@@ -11,6 +11,56 @@
 
 /* --- Win Condition --- */
 
+function playVictoryFallbackChime() {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+
+    const ctx = new AudioCtx();
+    const now = ctx.currentTime;
+    const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
+
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'triangle';
+      osc.frequency.value = freq;
+
+      gain.gain.setValueAtTime(0.0001, now + i * 0.14);
+      gain.gain.exponentialRampToValueAtTime(0.16, now + i * 0.14 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.14 + 0.2);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(now + i * 0.14);
+      osc.stop(now + i * 0.14 + 0.22);
+    });
+  } catch (e) {
+    console.log('Fallback victory chime failed:', e);
+  }
+}
+
+function playSoundById(audioId, fallbackFn) {
+  const sound = document.getElementById(audioId);
+
+  if (!sound) {
+    if (fallbackFn) fallbackFn();
+    return;
+  }
+
+  sound.currentTime = 0;
+  const playPromise = sound.play();
+
+  if (playPromise && typeof playPromise.catch === 'function') {
+    playPromise.catch(e => {
+      console.log('Audio play failed:', e);
+      if (fallbackFn) fallbackFn();
+    });
+  }
+}
+
 /** Check if either player has reached 0 HP.
  *  Renders the game state and shows the game-over overlay if someone won.
  *  @returns {boolean} true if the game ended */
@@ -43,14 +93,12 @@ function showGameOver(playerWon) {
     title.textContent = t('victoryTitle');
     title.className = 'win';
     sub.textContent = t('victorySub');
-    const sound = document.getElementById('victory-sound');
-    if (sound) sound.play().catch(e => console.log("Audio play failed:", e));
+    playSoundById('victory-sound', playVictoryFallbackChime);
   } else {
     title.textContent = t('defeatTitle');
     title.className = 'lose';
     sub.textContent = t('defeatSub');
-    const sound = document.getElementById('defeat-sound');
-    if (sound) sound.play().catch(e => console.log("Audio play failed:", e));
+    playSoundById('defeat-sound');
   }
 
   overlay.classList.add('active');

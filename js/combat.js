@@ -20,6 +20,7 @@
 
 /** Click on a card in player's hand — play it immediately if possible. */
 function onHandCardClick(idx) {
+  if (gs.isPaused || gs.isGameOver) return;
   const card = gs.player.hand[idx];
 
   if (gs.turn !== 'player' || gs.phase === 'aiThinking') {
@@ -51,6 +52,7 @@ function onHandCardClick(idx) {
 
 /** Click on a board card — select attacker (own) or target (enemy). */
 function onBoardCardClick(card, isAI) {
+  if (gs.isPaused || gs.isGameOver) return;
   if (gs.turn === 'player') {
     // Player's turn: clicking own board card selects it as attacker
     if (!isAI) {
@@ -87,6 +89,7 @@ function onBoardCardClick(card, isAI) {
 /** Player attacks with their selected minion.
  *  @param {number|null} targetId — ID of enemy board card, or null for hero */
 function executePlayerAttack(targetId) {
+  if (gs.isPaused || gs.isGameOver) return;
   const attacker = gs.player.board.find(c => c.id === gs.attackerId);
   if (!attacker) return;
 
@@ -133,6 +136,7 @@ function executePlayerAttack(targetId) {
 /** AI attacks with its selected minion.
  *  @param {number|null} targetId — ID of player board card, or null for hero */
 function executeAiAttack(targetId) {
+  if (gs.isPaused || gs.isGameOver) return;
   const attacker = gs.ai.board.find(c => c.id === gs._aiAttackerId);
   if (!attacker) return;
 

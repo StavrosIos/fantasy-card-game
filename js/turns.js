@@ -16,6 +16,7 @@
 /** Player ends their turn — triggers AI's turn.
  *  Called when the player clicks the "End Turn" button. */
 function endPlayerTurn() {
+  if (gs.isPaused || gs.isGameOver) return;
   if (gs.turn !== 'player' || gs.phase === 'aiThinking') return;
 
   stopTimer();
@@ -35,6 +36,7 @@ function endPlayerTurn() {
 /** Start the AI's turn: draw a card, gain mana, unfreeze minions.
  *  Then begin the AI's action sequence with a delay for readability. */
 function startAiTurn() {
+  if (gs.isPaused || gs.isGameOver) return;
   gs.phase = 'aiThinking';
 
   // Draw a card
@@ -64,6 +66,7 @@ function startAiTurn() {
 /** One step of the AI's turn: try to play a card, then attack with minions.
  *  Recurses until the AI has no more actions, then ends its turn. */
 function aiTurnStep() {
+  if (gs.isPaused || gs.isGameOver) return;
   // Check win condition first
   if (checkWinCondition()) return;
 
@@ -154,6 +157,7 @@ function aiTurnStep() {
 
 /** Start the 20-second turn timer for the player. */
 function startTimer() {
+  if (gs.isPaused || gs.isGameOver) return;
   stopTimer();
   gs.turnTimer = 20;
   render();

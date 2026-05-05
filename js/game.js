@@ -67,6 +67,9 @@ function playSoundById(audioId, fallbackFn) {
 function checkWinCondition() {
   if (gs.ai.health <= 0) {
     gs.ai.health = 0;
+    gs.isGameOver = true;
+    gs.isPaused = false;
+    stopTimer();
     render();
     showGameOver(true);
     return true;
@@ -74,6 +77,9 @@ function checkWinCondition() {
 
   if (gs.player.health <= 0) {
     gs.player.health = 0;
+    gs.isGameOver = true;
+    gs.isPaused = false;
+    stopTimer();
     render();
     showGameOver(false);
     return true;
@@ -125,6 +131,8 @@ async function initGame() {
     ai:     { health:20, mana:0, maxMana:1, deck:[], hand:[], board:[], heroImage: aiHeroImage },
     turn: 'player',
     phase: 'main',
+    isPaused: false,
+    isGameOver: false,
     selectedHandIdx: null,
     attackerId: null,
     _aiAttackerId: null,
@@ -152,6 +160,25 @@ async function initGame() {
   startTimer();
 }
 
+function togglePause() {
+  if (gs.isGameOver) return;
+
+  gs.isPaused = !gs.isPaused;
+  if (gs.isPaused) {
+    stopTimer();
+    log(t('gamePaused'));
+  } else {
+    if (gs.turn === 'player') {
+      startTimer();
+    } else if (gs.turn === 'ai' && gs.phase === 'aiThinking') {
+      setTimeout(() => aiTurnStep(), 150);
+    }
+  }
+
+  updateStaticTexts();
+  render();
+}
+
 function startGameFromIntro() {
   const intro = document.getElementById('intro-screen');
   if (intro) intro.classList.remove('active');
@@ -162,3 +189,4 @@ function startGameFromIntro() {
 updateStaticTexts();
 
 window.startGameFromIntro = startGameFromIntro;
+window.togglePause = togglePause;

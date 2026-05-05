@@ -11,6 +11,8 @@ let gs = {
   ai:     { health:20, mana:0, maxMana:1, deck:[], hand:[], board:[], heroImage: '' },
   turn: 'player',           // whose turn it is
   phase: 'main',            // main | aiThinking
+  isPaused: false,
+  isGameOver: false,
   attackerId: null,         // id of player's board card selected to attack with
   turnNumber: 1,
   turnTimer: 20,

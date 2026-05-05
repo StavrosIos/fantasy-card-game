@@ -50,6 +50,9 @@ const I18N = {
     ,rule3: 'Attack enemy minions or the enemy hero during your turn.'
     ,rule4: 'Reduce the enemy hero to 0 health to win.'
     ,startGame: 'Start Game'
+    ,pause: 'Pause'
+    ,resume: 'Resume'
+    ,gamePaused: 'Game paused.'
   },
   el: {
     aiOpponent: '👾 Αντίπαλος AI',
@@ -98,6 +101,9 @@ const I18N = {
     ,rule3: 'Επιτέσου σε εχθρικούς υπηρέτες ή στον εχθρικό ήρωα στον γύρο σου.'
     ,rule4: 'Μείωσε τον εχθρικό ήρωα σε 0 ζωή για να κερδίσεις.'
     ,startGame: 'Έναρξη Παιχνιδιού'
+    ,pause: 'Παύση'
+    ,resume: 'Συνέχεια'
+    ,gamePaused: 'Το παιχνίδι είναι σε παύση.'
   }
 };
 
@@ -126,6 +132,7 @@ function updateStaticTexts() {
   const rulesTitle = document.getElementById('rules-title');
   const rulesList = document.getElementById('rules-list');
   const startGameBtn = document.getElementById('btn-start-game');
+  const pauseBtn = document.getElementById('btn-pause');
 
   if (aiName) aiName.textContent = t('aiOpponent');
   if (playerName) playerName.textContent = t('you');
@@ -137,6 +144,7 @@ function updateStaticTexts() {
   if (introSubtitle) introSubtitle.textContent = t('introSubtitle');
   if (rulesTitle) rulesTitle.textContent = t('rulesTitle');
   if (startGameBtn) startGameBtn.textContent = t('startGame');
+  if (pauseBtn) pauseBtn.textContent = (window.gs && window.gs.isPaused) ? t('resume') : t('pause');
 
   if (rulesList) {
     rulesList.innerHTML = `

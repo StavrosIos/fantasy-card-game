@@ -144,7 +144,7 @@ function updateStaticTexts() {
   if (introSubtitle) introSubtitle.textContent = t('introSubtitle');
   if (rulesTitle) rulesTitle.textContent = t('rulesTitle');
   if (startGameBtn) startGameBtn.textContent = t('startGame');
-  if (pauseBtn) pauseBtn.textContent = (window.gs && window.gs.isPaused) ? t('resume') : t('pause');
+  if (pauseBtn) pauseBtn.textContent = (typeof gs !== 'undefined' && gs.isPaused) ? t('resume') : t('pause');
 
   if (rulesList) {
     rulesList.innerHTML = `

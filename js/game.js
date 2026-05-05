@@ -169,7 +169,7 @@ function togglePause() {
     log(t('gamePaused'));
   } else {
     if (gs.turn === 'player') {
-      startTimer();
+      startTimer(false);
     } else if (gs.turn === 'ai' && gs.phase === 'aiThinking') {
       setTimeout(() => aiTurnStep(), 150);
     }

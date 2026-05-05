@@ -155,11 +155,14 @@ function aiTurnStep() {
 
 /* --- Turn Timer --- */
 
-/** Start the 20-second turn timer for the player. */
-function startTimer() {
+/** Start the turn timer for the player.
+ * @param {boolean} resetToFull - true: reset to 20s, false: continue from current */
+function startTimer(resetToFull = true) {
   if (gs.isPaused || gs.isGameOver) return;
   stopTimer();
-  gs.turnTimer = 20;
+  if (resetToFull) {
+    gs.turnTimer = 20;
+  }
   render();
 
   gs.timerInterval = setInterval(() => {

@@ -93,6 +93,46 @@
   box-shadow: 0 0 0 2px rgba(53, 181, 255, 0.25);
 }
 
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(12, 6, 4, 0.82);
+  padding: 24px;
+}
+
+.intro-screen.active {
+  display: flex;
+}
+
+.intro-card {
+  max-width: 760px;
+  width: 100%;
+  background: linear-gradient(160deg, #2c1a1a 0%, #3d2b1f 100%);
+  border: 2px solid #c5b394;
+  border-radius: 16px;
+  padding: 24px;
+  color: #f4ead4;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+}
+
+.intro-card h1,
+.intro-card h2 {
+  margin: 0 0 12px;
+}
+
+.intro-card p {
+  margin: 0 0 12px;
+}
+
+.intro-card ul {
+  margin: 0 0 16px 18px;
+  line-height: 1.6;
+}
+
 .turn-header .turn-indicator {
   flex: 1;
   margin-bottom: 0;

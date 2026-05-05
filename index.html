@@ -9,6 +9,28 @@
 </head>
 <body>
 
+  <div id="intro-screen" class="intro-screen active">
+    <div class="intro-card">
+      <h1 id="intro-title">Mythos Convergence</h1>
+      <p id="intro-subtitle">A strategic mythology card battle.</p>
+
+      <div class="lang-switcher" aria-label="Language selector">
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')" title="English">🇬🇧</button>
+        <button class="lang-btn" data-lang="el" onclick="setLanguage('el')" title="Ελληνικά">🇬🇷</button>
+      </div>
+
+      <h2 id="rules-title">How to Play</h2>
+      <ul id="rules-list">
+        <li>Each player starts with 20 health and 3 cards.</li>
+        <li>Play cards using mana and build your board (max 7 minions).</li>
+        <li>Attack enemy minions or the enemy hero during your turn.</li>
+        <li>Reduce the enemy hero to 0 health to win.</li>
+      </ul>
+
+      <button id="btn-start-game" class="btn btn-end-turn" onclick="startGameFromIntro()">Start Game</button>
+    </div>
+  </div>
+
   <!-- ============================================================
        GAME OVER OVERLAY
        ============================================================ -->
@@ -29,7 +51,6 @@
        MAIN GAME BOARD
        ============================================================ -->
   <div id="game-board">
-
     <div class="lang-switcher" aria-label="Language selector">
       <button class="lang-btn" data-lang="en" onclick="setLanguage('en')" title="English">🇬🇧</button>
       <button class="lang-btn" data-lang="el" onclick="setLanguage('el')" title="Ελληνικά">🇬🇷</button>

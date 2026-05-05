@@ -42,6 +42,14 @@ const I18N = {
     ,rebornWithOne: 'is reborn with 1 HP!'
     ,returnsToHand: 'returns to hand!'
     ,skeletonsRise: 'Skeletons rise from the dead!'
+    ,introTitle: 'Mythos Convergence'
+    ,introSubtitle: 'A strategic mythology card battle.'
+    ,rulesTitle: 'How to Play'
+    ,rule1: 'Each player starts with 20 health and 3 cards.'
+    ,rule2: 'Play cards using mana and build your board (max 7 minions).'
+    ,rule3: 'Attack enemy minions or the enemy hero during your turn.'
+    ,rule4: 'Reduce the enemy hero to 0 health to win.'
+    ,startGame: 'Start Game'
   },
   el: {
     aiOpponent: '👾 Αντίπαλος AI',
@@ -82,6 +90,14 @@ const I18N = {
     ,rebornWithOne: 'αναγεννιέται με 1 Ζωή!'
     ,returnsToHand: 'επιστρέφει στο χέρι!'
     ,skeletonsRise: 'Σκελετοί σηκώνονται από τους νεκρούς!'
+    ,introTitle: 'Mythos Convergence'
+    ,introSubtitle: 'Μια στρατηγική μάχη καρτών μυθολογίας.'
+    ,rulesTitle: 'Πώς Παίζεται'
+    ,rule1: 'Κάθε παίκτης ξεκινά με 20 ζωή και 3 κάρτες.'
+    ,rule2: 'Παίξε κάρτες με μάνα και χτίσε το πεδίο σου (μέχρι 7 υπηρέτες).'
+    ,rule3: 'Επιτέσου σε εχθρικούς υπηρέτες ή στον εχθρικό ήρωα στον γύρο σου.'
+    ,rule4: 'Μείωσε τον εχθρικό ήρωα σε 0 ζωή για να κερδίσεις.'
+    ,startGame: 'Έναρξη Παιχνιδιού'
   }
 };
 
@@ -105,6 +121,11 @@ function updateStaticTexts() {
   const playerDeckLabel = document.getElementById('player-deck-label');
   const endTurnBtn = document.getElementById('btn-end-turn');
   const playAgainBtn = document.getElementById('btn-play-again');
+  const introTitle = document.getElementById('intro-title');
+  const introSubtitle = document.getElementById('intro-subtitle');
+  const rulesTitle = document.getElementById('rules-title');
+  const rulesList = document.getElementById('rules-list');
+  const startGameBtn = document.getElementById('btn-start-game');
 
   if (aiName) aiName.textContent = t('aiOpponent');
   if (playerName) playerName.textContent = t('you');
@@ -112,6 +133,19 @@ function updateStaticTexts() {
   if (playerDeckLabel) playerDeckLabel.textContent = t('deck') + ':';
   if (endTurnBtn) endTurnBtn.textContent = t('endTurn');
   if (playAgainBtn) playAgainBtn.textContent = t('playAgain');
+  if (introTitle) introTitle.textContent = t('introTitle');
+  if (introSubtitle) introSubtitle.textContent = t('introSubtitle');
+  if (rulesTitle) rulesTitle.textContent = t('rulesTitle');
+  if (startGameBtn) startGameBtn.textContent = t('startGame');
+
+  if (rulesList) {
+    rulesList.innerHTML = `
+      <li>${t('rule1')}</li>
+      <li>${t('rule2')}</li>
+      <li>${t('rule3')}</li>
+      <li>${t('rule4')}</li>
+    `;
+  }
 
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === currentLanguage);

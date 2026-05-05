@@ -104,5 +104,13 @@ async function initGame() {
   startTimer();
 }
 
-// Start the game on load
-initGame();
+function startGameFromIntro() {
+  const intro = document.getElementById('intro-screen');
+  if (intro) intro.classList.remove('active');
+  initGame();
+}
+
+// Show intro first, only initialize static translated text on load
+updateStaticTexts();
+
+window.startGameFromIntro = startGameFromIntro;

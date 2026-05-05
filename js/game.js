@@ -40,15 +40,15 @@ function showGameOver(playerWon) {
   const sub = document.getElementById('game-over-sub');
 
   if (playerWon) {
-    title.textContent = '🏆 VICTORY!';
+    title.textContent = t('victoryTitle');
     title.className = 'win';
-    sub.textContent = 'You defeated the AI opponent!';
+    sub.textContent = t('victorySub');
     const sound = document.getElementById('victory-sound');
     if (sound) sound.play().catch(e => console.log("Audio play failed:", e));
   } else {
-    title.textContent = '💀 DEFEAT';
+    title.textContent = t('defeatTitle');
     title.className = 'lose';
-    sub.textContent = 'The AI has bested you. Try again!';
+    sub.textContent = t('defeatSub');
     const sound = document.getElementById('defeat-sound');
     if (sound) sound.play().catch(e => console.log("Audio play failed:", e));
   }
@@ -63,7 +63,7 @@ function showGameOver(playerWon) {
 async function initGame() {
   // First, load templates if they haven't been loaded
   if (CARD_TEMPLATES.length === 0) {
-    log('Loading mythical cards...');
+    log(t('loadingCards'));
     await loadCardTemplates();
   }
 
@@ -98,7 +98,8 @@ async function initGame() {
   // Hide game over overlay
   document.getElementById('game-over').classList.remove('active');
 
-  log('Game started! You draw 3 cards. Click a card to play it.');
+  updateStaticTexts();
+  log(t('gameStarted'));
   render();
   startTimer();
 }

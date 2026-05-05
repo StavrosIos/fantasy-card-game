@@ -53,7 +53,7 @@ function startAiTurn() {
   gs.ai.board.forEach(c => { c.hasAttacked = false; });
 
   render();
-  log("AI is thinking...");
+  log(t('aiThinking'));
 
   // AI takes its turn with delays for readability
   setTimeout(() => aiTurnStep(), 800);
@@ -142,7 +142,7 @@ function aiTurnStep() {
 
   gs.turnNumber++;
   render();
-  log('Your turn — Turn ' + gs.turnNumber);
+  log(t('yourTurn') + ' — ' + t('turnLabel') + ' ' + gs.turnNumber);
   
   // Only start timer for player
   if (gs.turn === 'player') {
@@ -172,7 +172,7 @@ function startTimer() {
     if (gs.turnTimer <= 0) {
       gs.turnTimer = 0;
       stopTimer();
-      log("Time's up!");
+      log(t('timesUp'));
       endPlayerTurn();
     }
     renderTimer(); // Only update timer UI to prevent card jumping

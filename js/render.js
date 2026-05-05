@@ -18,20 +18,20 @@ function render() {
   renderTimer();
 
   // Health & mana displays
-  document.getElementById('player-health').textContent = gs.player.health + ' HP';
-  document.getElementById('player-mana').textContent = gs.player.mana + ' / ' + gs.player.maxMana + ' Mana';
-  document.getElementById('ai-health').textContent = gs.ai.health + ' HP';
-  document.getElementById('ai-mana').textContent = gs.ai.mana + ' / ' + gs.ai.maxMana + ' Mana';
+  document.getElementById('player-health').textContent = gs.player.health + ' ' + t('hp');
+  document.getElementById('player-mana').textContent = gs.player.mana + ' / ' + gs.player.maxMana + ' ' + t('mana');
+  document.getElementById('ai-health').textContent = gs.ai.health + ' ' + t('hp');
+  document.getElementById('ai-mana').textContent = gs.ai.mana + ' / ' + gs.ai.maxMana + ' ' + t('mana');
   document.getElementById('player-deck-count').textContent = gs.player.deck.length;
   document.getElementById('ai-deck-count').textContent = gs.ai.deck.length;
 
   // Turn indicator
   const ti = document.getElementById('turn-indicator');
   if (gs.turn === 'player') {
-    ti.textContent = 'Your Turn — Turn ' + gs.turnNumber;
+    ti.textContent = t('yourTurn') + ' — ' + t('turnLabel') + ' ' + gs.turnNumber;
     ti.className = 'turn-indicator player-turn';
   } else {
-    ti.textContent = "AI's Turn — Turn " + gs.turnNumber;
+    ti.textContent = t('aiTurn') + ' — ' + t('turnLabel') + ' ' + gs.turnNumber;
     ti.className = 'turn-indicator ai-turn';
   }
 

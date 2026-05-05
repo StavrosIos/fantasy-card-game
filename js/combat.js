@@ -23,19 +23,19 @@ function onHandCardClick(idx) {
   const card = gs.player.hand[idx];
 
   if (gs.turn !== 'player' || gs.phase === 'aiThinking') {
-    log("Not your turn!");
+    log(t('notYourTurn'));
     return;
   }
 
   // Check mana
   if (gs.player.mana < card.manaCost) {
-    log("Not enough mana for " + card.name + ' (need ' + card.manaCost + ')');
+    log(t('notEnoughManaFor') + ' ' + card.name + ' (' + t('needMana') + ' ' + card.manaCost + ')');
     return;
   }
 
   // Check board space (max 7)
   if (gs.player.board.length >= 7) {
-    log('Your board is full!');
+    log(t('boardFull'));
     return;
   }
 
@@ -59,12 +59,12 @@ function onBoardCardClick(card, isAI) {
         gs.attackerId = null;
         log('');
       } else if (card.frozen) {
-        log(card.name + ' is frozen and can\'t attack!');
+        log(card.name + ' ' + t('isFrozen'));
       } else if (card.hasAttacked) {
-        log(card.name + ' has already attacked this turn.');
+        log(card.name + ' ' + t('alreadyAttacked'));
       } else {
         gs.attackerId = card.id;
-        log('Selected ' + card.name + '. Click an enemy minion or hero to attack.');
+        log(t('selected') + ' ' + card.name + '. ' + t('clickEnemyToAttack'));
       }
       render();
       return;
@@ -98,7 +98,7 @@ function executePlayerAttack(targetId) {
   if (enemyTaunts.length > 0 && targetId !== null) {
     const target = gs.ai.board.find(c => c.id === targetId);
     if (target && !target.taunt) {
-      log('Must attack a taunting minion first!');
+      log(t('mustAttackTaunt'));
       return;
     }
   }
@@ -108,7 +108,7 @@ function executePlayerAttack(targetId) {
     defenderEl = document.querySelector('.ai-board .hero-card');
     animateAttack(attackerEl, defenderEl, () => {
       gs.ai.health -= attacker.attack;
-      log(attacker.name + ' attacks AI for ' + attacker.attack + '!');
+      log(attacker.name + ' ' + t('attacksAIFor') + ' ' + attacker.attack + '!');
       finalizeAttack(attacker);
     });
   } else {
@@ -144,7 +144,7 @@ function executeAiAttack(targetId) {
   if (playerTaunts.length > 0 && targetId !== null) {
     const target = gs.player.board.find(c => c.id === targetId);
     if (target && !target.taunt) {
-      log('Must attack a taunting minion first!');
+      log(t('mustAttackTaunt'));
       return;
     }
   }
@@ -154,7 +154,7 @@ function executeAiAttack(targetId) {
     defenderEl = document.querySelector('.player-board .hero-card');
     animateAttack(attackerEl, defenderEl, () => {
       gs.player.health -= attacker.attack;
-      log('AI ' + attacker.name + ' attacks you for ' + attacker.attack + '!');
+      log('AI ' + attacker.name + ' ' + t('attacksYouFor') + ' ' + attacker.attack + '!');
       finalizeAttack(attacker);
     });
   } else {
@@ -169,7 +169,7 @@ function executeAiAttack(targetId) {
 
       defender.health -= atk;
       attacker.health -= defender.attack;
-      log('AI ' + attacker.name + ' attacks ' + defender.name + '!');
+      log(t('aiAttacks') + ' ' + attacker.name + ' ' + t('attacks') + ' ' + defender.name + '!');
       finalizeAttack(attacker);
     });
   }
@@ -253,7 +253,7 @@ function playCard(handIdx, owner) {
   // Apply battlecry
   applyBattlecry(card, owner);
 
-  log((owner === 'player' ? 'You play ' : 'AI plays ') + card.name);
+  log((owner === 'player' ? t('youPlay') + ' ' : t('aiPlays') + ' ') + card.name);
 
   // Clean up any deaths from battlecry
   cleanupDeadMinions();
@@ -270,7 +270,7 @@ function applyBattlecry(card, owner) {
   const abilities = card.abilities || [];
 
   if (abilities.length === 0) {
-    log(card.name + ' enters the battlefield.');
+    log(card.name + ' ' + t('entersBattlefield'));
     return;
   }
 
@@ -445,7 +445,7 @@ function applyDeathrattle(card, owner) {
   switch (card.ability) {
     case 'Burn': {
       enemy.board.forEach(c => { c.health -= 2; });
-      log(card.name + ' burns! 2 damage to all enemies.');
+      log(card.name + ' ' + t('burnsEnemies'));
       break;
     }
 
@@ -453,13 +453,13 @@ function applyDeathrattle(card, owner) {
       const revived = createCardInstance(findTemplateFor(card));
       revived.health = 1;
       if (owner === 'player') { gs.player.hand.push(revived); } else { gs.ai.hand.push(revived); }
-      log(card.name + ' is reborn with 1 HP!');
+      log(card.name + ' ' + t('rebornWithOne'));
       break;
     }
 
     case 'Return': {
       if (owner === 'player') { gs.player.hand.push(card); } else { gs.ai.hand.push(card); }
-      log(card.name + ' returns to hand!');
+      log(card.name + ' ' + t('returnsToHand'));
       break;
     }
 
@@ -468,7 +468,7 @@ function applyDeathrattle(card, owner) {
       for (let s = 0; s < 2; s++) {
         board.push(createCardInstance({ name:'Skeleton', manaCost:0, attack:1, health:1, archetype:'Undead', ability:'', abilityDesc:'', art:'💀' }));
       }
-      log('Skeletons rise from the dead!');
+      log(t('skeletonsRise'));
       break;
     }
   }

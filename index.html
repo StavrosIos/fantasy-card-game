@@ -15,7 +15,7 @@
   <div id="game-over">
     <h1 id="game-over-title"></h1>
     <p id="game-over-sub"></p>
-    <button class="btn btn-restart" onclick="initGame()">Play Again</button>
+    <button class="btn btn-restart" id="btn-play-again" onclick="initGame()">Play Again</button>
   </div>
 
   <!-- Card Image Popup -->
@@ -30,14 +30,19 @@
        ============================================================ -->
   <div id="game-board">
 
+    <div class="lang-switcher" aria-label="Language selector">
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')" title="English">🇬🇧</button>
+      <button class="lang-btn" data-lang="el" onclick="setLanguage('el')" title="Ελληνικά">🇬🇷</button>
+    </div>
+
     <!-- AI Player Bar -->
     <div class="player-bar ai">
       <div class="player-info">
-        <span class="player-name">&#128126; AI Opponent</span>
+        <span class="player-name" id="ai-name">&#128126; AI Opponent</span>
         <span class="stat-badge health" id="ai-health">20 HP</span>
         <span class="stat-badge mana" id="ai-mana">0 / 10 Mana</span>
       </div>
-      <div class="deck-info">Deck: <span id="ai-deck-count">0</span></div>
+      <div class="deck-info"><span id="ai-deck-label">Deck:</span> <span id="ai-deck-count">0</span></div>
     </div>
 
     <!-- Turn Indicator & Timer -->
@@ -60,11 +65,11 @@
     <!-- Player Bar -->
     <div class="player-bar me">
       <div class="player-info">
-        <span class="player-name">&#128104;&#8205;&#127919; You</span>
+        <span class="player-name" id="player-name">&#128104;&#8205;&#127919; You</span>
         <span class="stat-badge health" id="player-health">20 HP</span>
         <span class="stat-badge mana" id="player-mana">0 / 10 Mana</span>
       </div>
-      <div class="deck-info">Deck: <span id="player-deck-count">0</span></div>
+      <div class="deck-info"><span id="player-deck-label">Deck:</span> <span id="player-deck-count">0</span></div>
     </div>
 
     <!-- Controls -->
@@ -81,6 +86,7 @@
        SCRIPTS (loaded in dependency order)
        ============================================================ -->
   <script src="js/cards.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/game-state.js"></script>
   <script src="js/render.js"></script>
   <script src="js/combat.js"></script>

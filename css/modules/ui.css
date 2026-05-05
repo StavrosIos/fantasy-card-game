@@ -66,6 +66,33 @@
   gap: 15px;
 }
 
+.lang-switcher {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.lang-btn {
+  border: 2px solid #c5b394;
+  background: #2c1a1a;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.lang-btn:hover {
+  transform: translateY(-1px);
+  border-color: #e8ddc0;
+}
+
+.lang-btn.active {
+  border-color: #35b5ff;
+  box-shadow: 0 0 0 2px rgba(53, 181, 255, 0.25);
+}
+
 .turn-header .turn-indicator {
   flex: 1;
   margin-bottom: 0;
